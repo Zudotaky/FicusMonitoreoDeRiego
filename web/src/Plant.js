@@ -1,0 +1,29 @@
+import React from 'react'
+
+const imageStyle = {
+    width: '100%',
+  };
+
+
+function calcularEstado(humedad){
+    // Exceso de riego, Riego estable, Falta riego
+    if(humedad<300){
+        return <font size="2" color="red">Falta riego.</font>;
+    }
+    if(humedad<600){
+        return <font size="2" color="Green">Riego estable.</font>;
+    }
+    return <font size="2" color="Blue">Exceso de riego.</font>;
+}
+
+function Plant(){
+    return(
+        <div className="card">
+            <img className="card-img-top" src={'https://cdn.homedit.com/wp-content/uploads/2016/08/DIY-pipe-plant-stand-300x250.jpg'} alt="PlantImage"/>
+            <h4 className="lineaDebajo"><b>Nombre Planta</b></h4>
+            <p>Estado de la planta: {calcularEstado(900)}</p>
+        </div>
+    )
+}
+
+export default Plant;
