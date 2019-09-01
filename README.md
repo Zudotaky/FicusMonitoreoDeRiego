@@ -1,5 +1,7 @@
 # Ficus sistema de monitoreo de riego.
 
-Icono: Pendiente
+### Icono 
+
+![alt text](https://github.com/Zudotaky/FicusMonitoreoDeRiego/blob/master/iconoFicus.png)
 
 Entregas: N/N
