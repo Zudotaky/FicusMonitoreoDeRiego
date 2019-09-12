@@ -1,5 +1,21 @@
 
+
 class Planta():
 
-    def __init__(self,nombre):
-        nombre = nombre
+    def __init__(self,nombre,descripcion, id = None ):
+        self.__nombre = nombre
+        self.__descripcion = descripcion
+        self.__id = id
+
+    def nombre(self):
+        return self.__nombre
+
+    def descripcion(self):
+        return self.__descripcion
+
+    def id(self):
+        return self.__id
+
+    def cambiarId(self,id):
+        print(id)
+        self.__id = id
