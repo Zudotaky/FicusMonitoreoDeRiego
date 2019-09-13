@@ -44,7 +44,7 @@ build/Release
 
 # Dependency directories
 node_modules/
-web/node_modules/*
+/web/node_modules/*
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -218,3 +218,4 @@ dmypy.json
 
 .idea
 # End of https://www.gitignore.io/api/node,python
+web/node_modules/
