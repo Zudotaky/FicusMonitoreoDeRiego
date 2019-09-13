@@ -7,19 +7,19 @@ import HeaderBar from './HeaderBar';
 function App() {
   return (
 
-      <div className="App">
+    <div className="App">
         <head>
           <Favicon />
         </head>
         <body>
-        <HeaderBar />
-         <div class="row">
-         <div class="column">
+          <HeaderBar />
+          <div className="row">
+            <div className="column">
               <Plant />
               <Plant />
               <Plant />
             </div>
-            <div class="column">
+            <div className="column">
               <DataChart />
             </div>
           </div>

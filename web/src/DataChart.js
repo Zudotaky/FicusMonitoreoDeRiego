@@ -2,30 +2,63 @@ import React, { PureComponent } from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
+import Servicios from './Servicios'
+
+let servi = new Servicios();
+servi.obtenerAlgo();
 
 const data = [
   {
-    name: 'Fecha A', uv: 1023, pv: 0, amt: 0,
+    name: getCurrentDateFormated(), uv: "Seco", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha B', uv: 200, pv: 0, amt: 0,
+    name: getCurrentDateFormated(), uv: "Mojado", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha C', uv: 290, pv: 0, amt: 0,
+    name: getCurrentDateFormated(), uv: "Muy mojado", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha D', uv: 400, pv: 0, amt: 0,
+    name: getCurrentDateFormated(), uv: "Muy mojado", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha E', uv: 358, pv: 4800, amt: 2181,
+    name: getCurrentDateFormated(), uv: "Mojado", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha F', uv: 190, pv: 3800, amt: 2500,
+    name: getCurrentDateFormated(), uv: "Mojado", pv: 0, amt: 0,
   },
   {
-    name: 'Fecha G', uv: 502, pv: 4300, amt: 2100,
+    name: getCurrentDateFormated(), uv: "Mojado", pv: 0, amt: 0,
+  },
+  {
+    name: getCurrentDateFormated(), uv: "Mojado", pv: 0, amt: 0,
+  },
+  {
+    name: getCurrentDateFormated(), uv: "Muy mojado", pv: 0, amt: 0,
+  },
+  {
+    name: getCurrentDateFormated(), uv: "Muy mojado", pv: 0, amt: 0,
+  },
+  {
+    name: getCurrentDateFormated(), uv: "Seco", pv: 0, amt: 0,
   },
 ];
+
+function getCurrentDateFormated() {
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //Enero era 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    } 
+    if (mm < 10) {
+      mm = '0' + mm;
+    } 
+    var today = dd + '/' + mm + '/' + yyyy;
+    //TODO cambiar esto return today;
+    return "10:25:32 01/02/1993";
+  }
 
 export default class DataChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/Lrffmzfc/';
@@ -33,16 +66,16 @@ export default class DataChart extends PureComponent {
   render() {
     return (
       <AreaChart
-        width={600}
-        height={400}
+        width={700}
+        height={500}
         data={data}
         margin={{
-          top: 10, right: 30, left: 0, bottom: 0,
+          top: 20, right: 30, left: 10, bottom: 10,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="4 4" />
         <XAxis dataKey="name" />
-        <YAxis />
+        <YAxis type="category" />
         <Tooltip />
         <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
       </AreaChart>

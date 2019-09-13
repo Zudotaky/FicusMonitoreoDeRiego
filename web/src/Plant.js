@@ -4,7 +4,6 @@ const imageStyle = {
     width: '100%',
   };
 
-
 function calcularEstado(humedad){
     // Exceso de riego, Riego estable, Falta riego
     if(humedad<300){
