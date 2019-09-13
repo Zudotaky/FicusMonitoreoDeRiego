@@ -17,5 +17,4 @@ class Planta():
         return self.__id
 
     def cambiarId(self,id):
-        print(id)
         self.__id = id

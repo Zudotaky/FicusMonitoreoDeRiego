@@ -32,6 +32,14 @@ def sensar():
     return jsonify(),200
 
 # post con 2 fechas y un id que devuelva un { [{ humedades:, fechas: } ]}
+@app.route('/obtenerSenesos',methods=['POST'])
+def datosSeneso():
+    json = request.get_json(force=True)
+    id = json['id']
+    fechaInicio= json['fechaInicio']
+    fechaFin= json['fechaFin']
+    listaDeSenseos = jardinero.otenerSenseo(id,fechaInicio,fechaFin)
+    return jsonify(listaDeSenseos),200
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
