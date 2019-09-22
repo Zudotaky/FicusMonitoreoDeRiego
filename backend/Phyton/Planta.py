@@ -2,9 +2,10 @@
 
 class Planta():
 
-    def __init__(self,nombre,descripcion, id = None ):
+    def __init__(self,nombre,descripcion, id = None, espacio = None ):
         self.__nombre = nombre
         self.__descripcion = descripcion
+        self.__espacioActual = espacio
         self.__id = id
 
     def nombre(self):

@@ -1,6 +1,6 @@
 import ast
 
-from  flask import Flask  , request, jsonify
+from flask import Flask, request, jsonify
 from flask_marshmallow import Marshmallow
 
 from backend.Phyton.Jardinero import Jardinero
@@ -9,38 +9,99 @@ app = Flask(__name__, template_folder="templates")
 marsh = Marshmallow(app)
 jardinero = Jardinero()
 
-# Create a URL route in our application for "/"
-@app.route('/getFlores',methods=['GET'])
-def getFlores():
-    nombres = jardinero.obtenerPlantas()
-    return jsonify({'Flores' : nombres })
 
-
+# Servicios De Alta
 @app.route('/agregarPlanta',methods=['POST'])
 def crearPlanta():
     json = request.get_json(force=True)
     nombre = json['nombre']
     descripcion = json['descripcion']
-    jardinero.nuevaPlanta(nombre,descripcion)
-    return jsonify(), 200
+    planta = jardinero.crearPlanta(nombre,descripcion)
+    return jsonify({'id': planta.id})
 
-# get que recive raw string con dry ,wet ,verry wet y id , seguarda con fecha
-@app.route('/sensar',methods=['POST'])
-def sensar():
+@app.route('/crearEspacio',methods=['POST'])
+def crearEspacio():
+    json = request.get_json(force=True)
+    nombre = json['id']
+    descripcion = json['descripcion']
+    espacio = jardinero.crearEspacio(nombre,descripcion)
+    return jsonify()
+
+@app.route('/crearReporte',methods=['POST'])
+def crearReporte():
     datosPlanta = ast.literal_eval(request.data.decode("utf-8"))
-    jardinero.sensar(datosPlanta[1], datosPlanta[0])
-    return jsonify(),200
+    # json = request.get_json(force=True)
+    # idPlanta = json['id']
+    # humedad = json['humedad']
+    # temperatura = json['temperatura']
+    registro = jardinero.crearReporte(datosPlanta[0], datosPlanta[1], datosPlanta[2])
+    return jsonify()
 
-# post con 2 fechas y un id que devuelva un { [{ humedades:, fechas: } ]}
-@app.route('/obtenerSenesos',methods=['POST'])
-def datosSeneso():
+
+# Servicios que modifican
+
+# modificarEspacio - modificarPlanta
+
+
+
+# Sercicios de consulta
+
+
+@app.route('/getPlantas',methods=['GET'])
+def obtenerPlantas():
+    nombres = jardinero.obtenerPlantas()
+    return jsonify({'Plantas' : nombres })
+
+@app.route('getPlanta',mothods=['POST'])
+def obtenerPlantaPorId():
+    json = request.get_json(force=True)
+    id = json['id']
+    planta = jardinero.obtenerPlantaPorId(id)
+    return jsonify({'Planta': planta})
+
+@app.route('/getPlantasDeEspacio',methods=['POST'])
+def obtenerPlantasPorEspacio():
+    json = request.get_json(force=True)
+    idEspacio = json['idEspacio']
+    plantas = jardinero.obtenerPlantasPorEspacioId(idEspacio)
+    return plantas
+
+# @app.route('/')
+# def obtenerPlantasPortipoDeEspacio():
+
+@app.route('/getEspacios',methods=['GET'])
+def ObtenerEspacios():
+    espacios = jardinero.obtenerEspacios()
+    return espacios
+
+@app.route('/getEspacio',methods=['POST'])
+def obtenerEspacioPorid():
+    json = request.get_json(force=True)
+    id = json['id']
+    espacio = jardinero.obtenerEspacioPorId(id)
+    return espacio
+
+# @app.route('/')
+# def obtenerEspaciosPorTipo():
+
+@app.route('/obtenerSensos',methods=['POST'])
+def obtenerReportePorIdPlanta():
+    json = request.get_json(force=True)
+    id = json['id']
+    listaDeSenseos = jardinero.obtenerSenseoPorIdPlanta(id)
+    return jsonify({'Sensos': listaDeSenseos})
+
+@app.route('/obtenerSensos',methods=['POST'])
+def obtenerReportePorFecha():
     json = request.get_json(force=True)
     id = json['id']
     fechaInicio= json['fechaInicio']
     fechaFin= json['fechaFin']
-    listaDeSenseos = jardinero.otenerSenseo(id,fechaInicio,fechaFin)
-    return jsonify(listaDeSenseos),200
+    listaDeSenseos = jardinero.obtenerSenseoPorIdPlantaYFecha(id, fechaInicio, fechaFin)
+    return jsonify({'Sensos' : listaDeSenseos})
+
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
     app.run()
+    # app.  run(host='0.0.0.0')
