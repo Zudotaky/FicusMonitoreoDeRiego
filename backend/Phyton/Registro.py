@@ -3,7 +3,7 @@ from DateTime import DateTime
 
 class Registro():
 
-    def __init__(self, idPlanta, humedad = None, temperatura = None, fecha = DateTime.DateTime()):
+    def __init__(self, idPlanta, humedad = None, temperatura = None, fecha = DateTime()):
         self.__idPlanta = idPlanta
         self.__horarioRegistrado = fecha
         self.__humedad = humedad

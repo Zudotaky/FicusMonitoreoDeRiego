@@ -52,7 +52,7 @@ def obtenerPlantas():
     nombres = jardinero.obtenerPlantas()
     return jsonify({'Plantas' : nombres })
 
-@app.route('getPlanta',mothods=['POST'])
+@app.route('/getPlantaPorId',methods=['POST'])
 def obtenerPlantaPorId():
     json = request.get_json(force=True)
     id = json['id']
@@ -74,7 +74,7 @@ def ObtenerEspacios():
     espacios = jardinero.obtenerEspacios()
     return espacios
 
-@app.route('/getEspacio',methods=['POST'])
+@app.route('/getEspacioPorId',methods=['POST'])
 def obtenerEspacioPorid():
     json = request.get_json(force=True)
     id = json['id']
@@ -84,14 +84,14 @@ def obtenerEspacioPorid():
 # @app.route('/')
 # def obtenerEspaciosPorTipo():
 
-@app.route('/obtenerSensos',methods=['POST'])
+@app.route('/obtenerSensosIPord',methods=['POST'])
 def obtenerReportePorIdPlanta():
     json = request.get_json(force=True)
     id = json['id']
     listaDeSenseos = jardinero.obtenerSenseoPorIdPlanta(id)
     return jsonify({'Sensos': listaDeSenseos})
 
-@app.route('/obtenerSensos',methods=['POST'])
+@app.route('/obtenerSensosPorFecha',methods=['POST'])
 def obtenerReportePorFecha():
     json = request.get_json(force=True)
     id = json['id']
