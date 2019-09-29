@@ -219,3 +219,5 @@ dmypy.json
 .idea
 # End of https://www.gitignore.io/api/node,python
 web/node_modules/
+
+ficus.db
