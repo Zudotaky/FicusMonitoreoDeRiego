@@ -11,13 +11,13 @@ jardinero = Jardinero()
 
 
 # Servicios De Alta
-@app.route('/agregarPlanta',methods=['POST'])
+@app.route('/agregarPlanta', methods=['POST'])
 def crearPlanta():
     json = request.get_json(force=True)
     nombre = json['nombre']
     descripcion = json['descripcion']
     planta = jardinero.crearPlanta(nombre,descripcion)
-    return jsonify({'id': planta.id})
+    return  jsonify({'id': planta.id()})
 
 @app.route('/crearEspacio',methods=['POST'])
 def crearEspacio():

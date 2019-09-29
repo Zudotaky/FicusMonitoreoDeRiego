@@ -1,13 +1,21 @@
 from DateTime import DateTime
+from sqlalchemy import Integer, Column, String, Date, ForeignKey, column
+from sqlalchemy.orm import relationship
+from backend.Phyton.base import Base
 
+class Registro(Base):
 
-class Registro():
+    __tablename__ = 'registro'
+    fecha = Column(Date, primary_key=True)
+    plantaId = Column(Integer, ForeignKey('planta.id'), primary_key=True)
+    humedad = Column(Integer)
+    temperatura = Column(Integer)
 
-    def __init__(self, idPlanta, humedad = None, temperatura = None, fecha = DateTime()):
-        self.__idPlanta = idPlanta
-        self.__horarioRegistrado = fecha
-        self.__humedad = humedad
-        self.__temperatura = temperatura
+    def __init__(self, idPlanta, humedad = None, temperatura=None, fecha=DateTime()):
+        self.idPlanta = idPlanta
+        self.horarioRegistrado = fecha
+        self.humedad = humedad
+        self.temperatura = temperatura
 
     def plantaId(self):
         return self.__idPlanta
@@ -20,3 +28,5 @@ class Registro():
 
     def temperatura(self):
         return self.__temperatura
+
+
