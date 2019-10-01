@@ -51,19 +51,24 @@ def obtenerPlantasPorEspacio():
 
 
 
+
 # Servicios De Espacio
-@app.route('/crearEspacio',methods=['POST'])
+@app.route('/agregarEspacio',methods=['POST'])
 def crearEspacio():
-    json = request.get_json(force=True)
-    nombre = json['id']
-    descripcion = json['descripcion']
+    jsonRequest = request.get_json(force=True)
+    nombre = jsonRequest['nombre']
+    descripcion = jsonRequest['descripcion']
     espacio = jardinero.crearEspacio(nombre,descripcion)
     return json.dumps(espacio)
 
-# Servicios que modifican
-
 # modificarEspacio
-
+@app.route('/agregarPlantaAEspacio',methods=['POST'])
+def agregarPlantaAEsapcio():
+    jsonRequest = request.get_json(force=True)
+    idEspacio = jsonRequest['Espacio']
+    idPlanta = jsonRequest['Planta']
+    jardinero.agregarPlantaAEspacio(idPlanta,idEspacio)
+    return json.dumps({})
 # Sercicios de consulta
 
 @app.route('/getEspacios',methods=['GET'])
@@ -73,8 +78,8 @@ def ObtenerEspacios():
 
 @app.route('/getEspacioPorId',methods=['POST'])
 def obtenerEspacioPorid():
-    json = request.get_json(force=True)
-    id = json['id']
+    jsonRequest = request.get_json(force=True)
+    id = jsonRequest['id']
     espacio = jardinero.obtenerEspacioPorId(id)
     return json.dumps(espacio)
 
@@ -87,10 +92,10 @@ def obtenerEspacioPorid():
 @app.route('/crearReporte',methods=['POST'])
 def crearReporte():
     datosPlanta = ast.literal_eval(request.data.decode("utf-8"))
-    # json = request.get_json(force=True)
-    # idPlanta = json['id']
-    # humedad = json['humedad']
-    # temperatura = json['temperatura']
+    # jsonRequest = request.get_json(force=True)
+    # idPlanta = jsonRequest['id']
+    # humedad = jsonRequest['humedad']
+    # temperatura = jsonRequest['temperatura']
     registro = jardinero.crearReporte(datosPlanta[0], datosPlanta[1], datosPlanta[2])
     return json.dumps(registro)
 
@@ -100,19 +105,19 @@ def crearReporte():
 
 @app.route('/obtenerSensosIPord',methods=['POST'])
 def obtenerReportePorIdPlanta():
-    json = request.get_json(force=True)
-    id = json['id']
+    jsonRequest = request.get_json(force=True)
+    id = jsonRequest['id']
     listaDeRegistros = jardinero.obtenerRegistroPorIdPlanta(id)
     return json.dumps({'Registros': list(listaDeRegistros)})
 
 @app.route('/obtenerSensosPorFecha',methods=['POST'])
 def obtenerReportePorFecha():
-    json = request.get_json(force=True)
-    id = json['id']
-    fechaInicio= json['fechaInicio']
-    fechaFin= json['fechaFin']
+    jsonRequest = request.get_json(force=True)
+    id = jsonRequest['id']
+    fechaInicio= jsonRequest['fechaInicio']
+    fechaFin= jsonRequest['fechaFin']
     listaDeRegistros = jardinero.obtenerRegistroPorIdPlantaYFecha(id, fechaInicio, fechaFin)
-    return jsonify({'Registros': listaDeRegistros})
+    return json.dumps({'Registros': list(listaDeRegistros)})
 
 
 
