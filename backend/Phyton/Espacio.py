@@ -4,20 +4,25 @@ from sqlalchemy.orm import relationship
 
 from backend.Phyton.Decoradores import jsonificable
 
-espacio_planta = Table('espacio_planta', Base.metadata,
-                       Column('planta_id', Integer, ForeignKey('planta.id')),
-                       Column('esapcio_id', Integer, ForeignKey('espacio.id')))
+class Espacio_planta(Base) :
+    __tablename__ = 'espacio_planta'
+    espacio_id = Column(Integer, ForeignKey('espacios.id'), primary_key=True)
+    planta_id = Column(Integer, ForeignKey('plantas.id'), primary_key=True)
+
+    def __init__(self, plantaid, espacioid):
+        self.espacio_id = espacioid
+        self.planta_id = plantaid
 
 
 class Espacio(Base, jsonificable):
-    __tablename__ = 'espacio'
+    __tablename__ = 'espacios'
     id = Column(Integer, primary_key=True)
     descripcion = Column(String(300), nullable=False)
     nombre = Column(String(30), nullable=False)
-    plantasId = relationship('Planta', secondary='espacio_planta')
+    plantasId = relationship('Espacio_planta', backref='espacio',
+                             primaryjoin=   id == Espacio_planta.espacio_id)
 
-    def __init__(self, nombre, descripcion, plantas=[], id=None):
+
+    def __init__(self, nombre, descripcion):
         self.nombre = nombre
         self.descripcion = descripcion
-        self.plantas = plantas
-        self.id = id
