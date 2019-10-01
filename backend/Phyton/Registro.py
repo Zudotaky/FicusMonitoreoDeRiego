@@ -2,8 +2,10 @@ from DateTime import DateTime
 from sqlalchemy import Integer, Column, String, Date, ForeignKey, column
 from sqlalchemy.orm import relationship
 from backend.Phyton.base import Base
+from backend.Phyton.Decoradores import jsonificable
 
-class Registro(Base):
+
+class Registro(Base, jsonificable):
 
     __tablename__ = 'registro'
     fecha = Column(Date, primary_key=True)

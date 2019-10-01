@@ -1,101 +1,110 @@
+import json
+import pickle
+
 import DateTime
+import jsonpickle
 
 from backend.Phyton.Registro import Registro
-from backend.Phyton.DaoGeneral import DaoGeneral
+from backend.Phyton.DaoGeneral import DaoPlanta, DaoEspacio, DaoRegistro
 from backend.Phyton.Espacio import Espacio
 from backend.Phyton.Planta import Planta
 
 
+
+
 class Jardinero:
 
-
     def __init__(self):
-        self.daoGeneral = DaoGeneral()
+        self.daoPlantas = DaoPlanta()
+        self.daoEspacio = DaoEspacio()
+        self.daoRegistro = DaoRegistro()
         self.formatoDia ="%Y-%m-%d %H:%M:%S"
 
+
+        #separar
     #funciones iniciadoras de objetos
     def crearPlanta(self, nombre, descripcion):
-        plantaNueva = Planta(nombre,descripcion)
-        self.daoGeneral.persistirPlanta(plantaNueva)
-        return plantaNueva
-
-    def crearEspacio(self, nombre, descripcion):
-        espacio = Espacio(nombre,descripcion)
-        self.daoGeneral.persistirEspacio(espacio)
-        return espacio
-
-    def crearReporte(self, idDePlnta, humedad, temperatura):
-        registro = Registro(idDePlnta, humedad, temperatura)
-        self.daoGeneral.persistirRegistro(registro)
-        return registro
+        plantaNueva = Planta(nombre, descripcion)
+        self.daoPlantas.persistirPlanta(plantaNueva)
+        return plantaNueva.jsonificar()
 
 
     #funciones Actualizadoras de objetos
 
-
     # funciones para recuperar datos persistidos
     def obtenerPlantas(self):
-        plantas = self.daoGeneral.obtenerPlantas()
-        jsonDePlantas = self.jsonifyPlantas(plantas)
+        listaDePlantas = self.daoPlantas.obtenerPlantas()
+        jsonDePlantas = []
+        for planta in listaDePlantas:
+            jsonDePlantas.append(planta.jsonificar())
         return jsonDePlantas
+
 
     def obtenerPlantaPorId(self, id):
-        planta = self.daoGeneral.obtenerPlantaPorId(id)
-        jsonPlanta = self.jsonifyPlantas(planta)
-        return jsonPlanta
+        return self.daoPlantas.obtenerPlantaPorId(id).jsonificar()
+
 
     def obtenerPlantasPorEspacioId(self, idEspacio):
-        plantas = self.daoGeneral.obtenerPlantasPorEspacioId(idEspacio)
-        jsonPlantas = self.jsonifyPlantas(plantas)
-        return jsonPlantas
-
-    def obtenerEspacios(self):
-        espacios = self.daoGeneral.obtenerEspacio()
-        return espacios
-
-    def obtenerEspacioPorId(self, id):
-        espacio = self.daoGeneral.obtenerEspacioPorId(id)
-        jsonEspacio = self.jsonifyEspacios(espacio)
-        return jsonEspacio
-
-    def obtenerSenseoPorIdPlanta(self, id):
-        listaRegistros = self.daoGeneral.obtenerRegistroPorId(id)
-        listaRegistrosFormados = self.jsonifyRegistros(listaRegistros)
-        return listaRegistrosFormados
-
-    def obtenerSenseoPorIdPlantaYFecha(self, id, fechaInicio, fechaFin):
-        listaRegistros = self.daoGeneral.obtenerSensosPorIdYFechas(id, fechaInicio, fechaFin)
-        listaRegistrosFormados = self.jsonifyRegistros(listaRegistros)
-        return listaRegistrosFormados
-
-
-    #metodos para trasformar a json objetos
-    def jsonifyPlantas(self, plantas):
+        listaDePlantas = self.daoPlantas.obtenerPlantasPorEspacioId(idEspacio)
         jsonDePlantas = []
-        for planta in plantas:
-            jsonDePlantas.append({'id': planta.id(), 'Nombre': planta.nombre(), 'Descripcion': planta.descripcion()})
+        for planta in listaDePlantas:
+            jsonDePlantas.append(planta.jsonificar())
         return jsonDePlantas
 
-    def jsonifyEspacios(self, espacios):
+
+            # separar
+    # funciones iniciadoras de objetos
+    def crearEspacio(self, nombre, descripcion):
+        espacio = Espacio(nombre,descripcion)
+        self.daoEspacio.persistirEspacio(espacio)
+        return espacio.jsonificar()
+
+
+    #funciones Actualizadoras de objetos
+
+    # funciones para recuperar datos persistidos
+    def obtenerEspacios(self):
+        listaDeEspacios = self.daoEspacio.obtenerEspacio()
         jsonDeEspacios = []
-        for espacio in espacios:
-            jsonDeEspacios.append({'id': espacio.id(), 'Nombre': espacio.nombre(), 'Descripcion': espacio.descripcion(),
-                                   'tipoDeEspacio': espacio.tipiDeEspacio(), 'idPlantas': espacio.plantasId()})
+        for planta in listaDeEspacios:
+            jsonDeEspacios.append(planta.jsonificar())
         return jsonDeEspacios
 
-    def jsonifyRegistros(self, listaRegistros):
-        listaRegistrosFormados = []
-        for registro in listaRegistros:
-            jsonRegistro = {'fechas': DateTime.DateTime(registro[2]).strftime(self.formatoDia), 'Humedad': registro[1],
-                            'Temperatura': registro[3]}
-            listaRegistrosFormados.append(jsonRegistro)
-        return listaRegistrosFormados
+
+    def obtenerEspacioPorId(self, id):
+        espacio = self.daoEspacio.obtenerEspacioPorId(id)
+        return espacio.jsonificar()
 
 
 
 
 
 
+
+        # separar
+    # funciones iniciadoras de objetos
+    def crearReporte(self, idDePlnta, humedad, temperatura):
+        registro = Registro(idDePlnta, humedad, temperatura)
+        self.daoRegistro.persistirRegistro(registro)
+        return registro.jsonificar()
+
+
+    #funciones Actualizadoras de objetos
+
+    # funciones para recuperar datos persistidos
+    def obtenerRegistroPorIdPlanta(self, plantaId):
+        listaDeRegistros = self.daoRegistro.obtenerRegistroPorId(plantaId)
+        jsonDeRegistros = []
+        for planta in listaDeRegistros:
+            jsonDeRegistros.append(planta.jsonificar())
+        return jsonDeRegistros
+
+    def obtenerRegistroPorIdPlantaYFecha(self, id, fechaInicio, fechaFin):
+        listaDeRegistros = self.daoRegistro.obtenerRegistrosPorIdYFechas(id, fechaInicio, fechaFin)
+        jsonDeRegistros = []
+        for planta in listaDeRegistros:
+            jsonDeRegistros.append(planta.jsonificar())
+        return jsonDeRegistros
 
 
 
