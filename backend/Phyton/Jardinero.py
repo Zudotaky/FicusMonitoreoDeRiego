@@ -6,7 +6,7 @@ import jsonpickle
 
 from backend.Phyton.Registro import Registro
 from backend.Phyton.DaoGeneral import DaoPlanta, DaoEspacio, DaoRegistro
-from backend.Phyton.Espacio import Espacio
+from backend.Phyton.Espacio import Espacio, Espacio_planta
 from backend.Phyton.Planta import Planta
 
 
@@ -105,6 +105,15 @@ class Jardinero:
         for planta in listaDeRegistros:
             jsonDeRegistros.append(planta.jsonificar())
         return jsonDeRegistros
+
+
+
+    def agregarPlantaAEspacio(self, idPlanta, idEspacio):
+        espacio_planta = Espacio_planta(idPlanta, idEspacio)
+        self.daoEspacio.agregarPlantaAEspacio(espacio_planta)
+        return espacio_planta
+
+
 
 
 

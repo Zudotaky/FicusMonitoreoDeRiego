@@ -6,6 +6,7 @@ from backend.Phyton.Espacio import Espacio
 from backend.Phyton.Planta import Planta
 from backend.Phyton.Registro import Registro
 from backend.Phyton.Decoradores import session, connecion
+from backend.Phyton.base import Base
 
 
 class DaoGeneral:
@@ -55,6 +56,10 @@ class DaoEspacio(DaoGeneral):
     def obtenerEspacioPorId(self, id):
         return self.session.query(Espacio).filter(Espacio.id == id).one()
 
+    @session
+    def agregarPlantaAEspacio(self, espacio_planta):
+        return self.session.add(espacio_planta)
+
 
 class DaoRegistro(DaoGeneral):
 
@@ -71,4 +76,4 @@ class DaoRegistro(DaoGeneral):
     def obtenerRegistrosPorIdYFechas(self, plantaId, fechaInicio, fechaFin):
         return self.session.query(Registro).filter(Registro.plantaId == plantaId, Registro.fecha > fechaInicio, Registro.fecha < fechaFin).all()
 
-#Base.metadata.create_all(DaoGeneral.engine)
+# Base.metadata.create_all(DaoGeneral.engine)

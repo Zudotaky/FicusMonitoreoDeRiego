@@ -11,9 +11,9 @@ class jsonificable():
 
 
 def session(funcion):
-    def decorada(self, obj):
+    def decorada(self, obj, *args):
         self.session = self.sessionConfig()
-        reapuesta = funcion(self, obj)
+        reapuesta = funcion(self, obj, *args)
         self.session.commit()
         self.session.refresh(obj)
         self.session.close()
