@@ -2,13 +2,23 @@ import ast
 import json
 
 
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_marshmallow import Marshmallow
-from backend.Phyton.Jardinero import Jardinero
+
+from backend.Phyton.Dispacher.DispatcherEspacio import DispatcherEspacio
+from backend.Phyton.Dispacher.DispatcherRegistro import DispatcherRegistro
+from backend.Phyton.Dispacher.DispatcherPlanta import DispatcherPlanta
 
 app = Flask(__name__, template_folder="templates")
 marsh = Marshmallow(app)
-jardinero = Jardinero()
+dispacherPlanta = DispatcherPlanta()
+dispacherRegistro = DispatcherRegistro()
+dispacherEspacio = DispatcherEspacio()
+
+
+
+
+
 
 
 # Servicios De Planta
@@ -17,7 +27,7 @@ def crearPlanta():
     jsonRequest = request.get_json(force=True)
     nombre = jsonRequest['nombre']
     descripcion = jsonRequest['descripcion']
-    planta = jardinero.crearPlanta(nombre, descripcion)
+    planta = dispacherPlanta.crearPlanta(nombre, descripcion)
     return json.dumps(planta)
 
 # Servicios que modifican
@@ -28,22 +38,23 @@ def crearPlanta():
 
 @app.route('/obtenerPlantas', methods=['GET'])
 def obtenerPlantas():
-    listaDePlantas = jardinero.obtenerPlantas()
+    listaDePlantas = dispacherPlanta.obtenerPlantas()
     return json.dumps({'Plantas': list(listaDePlantas)})
 
 @app.route('/obtenerPlantaPorId', methods=['POST'])
 def obtenerPlantaPorId():
     jsonRequest = request.get_json(force=True)
     id = jsonRequest['id']
-    planta = jardinero.obtenerPlantaPorId(id)
+    planta = dispacherPlanta.obtenerPlantaPorId(id)
     return json.dumps(planta)
 
 @app.route('/getPlantasDeEspacio', methods=['POST'])
 def obtenerPlantasPorEspacio():
     jsonRequest = request.get_json(force=True)
     idEspacio = jsonRequest['idEspacio']
-    listaDePlantas = jardinero.obtenerPlantasPorEspacioId(idEspacio)
+    listaDePlantas = dispacherPlanta.obtenerPlantasPorEspacioId(idEspacio)
     return json.dumps({'Plantas': list(listaDePlantas)})
+
 
 
 
@@ -58,7 +69,7 @@ def crearEspacio():
     jsonRequest = request.get_json(force=True)
     nombre = jsonRequest['nombre']
     descripcion = jsonRequest['descripcion']
-    espacio = jardinero.crearEspacio(nombre,descripcion)
+    espacio = dispacherEspacio.crearEspacio(nombre, descripcion)
     return json.dumps(espacio)
 
 # modificarEspacio
@@ -67,21 +78,22 @@ def agregarPlantaAEsapcio():
     jsonRequest = request.get_json(force=True)
     idEspacio = jsonRequest['Espacio']
     idPlanta = jsonRequest['Planta']
-    jardinero.agregarPlantaAEspacio(idPlanta,idEspacio)
+    dispacherEspacio.agregarPlantaAEspacio(idPlanta, idEspacio)
     return json.dumps({})
 # Sercicios de consulta
 
 @app.route('/getEspacios',methods=['GET'])
 def ObtenerEspacios():
-    espacios = jardinero.obtenerEspacios()
+    espacios = dispacherEspacio.obtenerEspacios()
     return json.dumps({'Espacios':list(espacios)})
 
 @app.route('/getEspacioPorId',methods=['POST'])
 def obtenerEspacioPorid():
     jsonRequest = request.get_json(force=True)
     id = jsonRequest['id']
-    espacio = jardinero.obtenerEspacioPorId(id)
+    espacio = dispacherEspacio.obtenerEspacioPorId(id)
     return json.dumps(espacio)
+
 
 
 
@@ -96,7 +108,7 @@ def crearReporte():
     # idPlanta = jsonRequest['id']
     # humedad = jsonRequest['humedad']
     # temperatura = jsonRequest['temperatura']
-    registro = jardinero.crearReporte(datosPlanta[0], datosPlanta[1], datosPlanta[2])
+    registro = dispacherRegistro.crearReporte(datosPlanta[0], datosPlanta[1], datosPlanta[2])
     return json.dumps(registro)
 
 # Servicios que modifican
@@ -107,7 +119,7 @@ def crearReporte():
 def obtenerReportePorIdPlanta():
     jsonRequest = request.get_json(force=True)
     id = jsonRequest['id']
-    listaDeRegistros = jardinero.obtenerRegistroPorIdPlanta(id)
+    listaDeRegistros = dispacherRegistro.obtenerRegistroPorIdPlanta(id)
     return json.dumps({'Registros': list(listaDeRegistros)})
 
 @app.route('/obtenerSensosPorFecha',methods=['POST'])
@@ -116,7 +128,7 @@ def obtenerReportePorFecha():
     id = jsonRequest['id']
     fechaInicio= jsonRequest['fechaInicio']
     fechaFin= jsonRequest['fechaFin']
-    listaDeRegistros = jardinero.obtenerRegistroPorIdPlantaYFecha(id, fechaInicio, fechaFin)
+    listaDeRegistros = dispacherRegistro.obtenerRegistroPorIdPlantaYFecha(id, fechaInicio, fechaFin)
     return json.dumps({'Registros': list(listaDeRegistros)})
 
 
