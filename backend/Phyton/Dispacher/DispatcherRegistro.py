@@ -2,12 +2,12 @@ from backend.Phyton.Dao.DaoRegistro import DaoRegistro
 from backend.Phyton.Registro import Registro
 
 
-class DispacherRegistro():
+class DispatcherRegistro():
 
     def __init__(self):
         self.daoRegistro = DaoRegistro()
+        self.formatoDia ="%Y-%m-%d %H:%M:%S"
 
-    # separar
     # funciones iniciadoras de objetos
     def crearReporte(self, idDePlnta, humedad, temperatura):
         registro = Registro(idDePlnta, humedad, temperatura)

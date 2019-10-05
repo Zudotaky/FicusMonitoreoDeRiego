@@ -1,5 +1,3 @@
-
-from backend.Phyton.Dao.DaoEspacio import DaoEspacio
 from backend.Phyton.Dao.DaoPlanta import DaoPlanta
 from backend.Phyton.Planta import Planta
 
@@ -12,7 +10,7 @@ class DispatcherPlanta:
         self.daoPlantas = DaoPlanta()
 
 
-        #funciones iniciadoras de objetos
+    #funciones iniciadoras de objetos
     def crearPlanta(self, nombre, descripcion):
         plantaNueva = Planta(nombre, descripcion)
         self.daoPlantas.persistirPlanta(plantaNueva)
