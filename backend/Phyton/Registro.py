@@ -18,17 +18,3 @@ class Registro(Base, jsonificable):
         self.horarioRegistrado = fecha
         self.humedad = humedad
         self.temperatura = temperatura
-
-    def plantaId(self):
-        return self.__idPlanta
-
-    def horarioDeRegistro(self):
-        return self.__horarioRegistrado
-
-    def humedad(self):
-        return self.__humedad
-
-    def temperatura(self):
-        return self.__temperatura
-
-

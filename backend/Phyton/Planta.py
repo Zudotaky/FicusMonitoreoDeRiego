@@ -2,7 +2,7 @@
 from sqlalchemy import String, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from backend.Phyton.Espacio import Espacio_planta
+from backend.Phyton.Relacion import Espacio_planta
 from backend.Phyton.base import Base
 from backend.Phyton.Decoradores import jsonificable
 
