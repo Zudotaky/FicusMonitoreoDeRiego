@@ -13,7 +13,7 @@ class DispatcherPlanta:
     #funciones iniciadoras de objetos
     def crearPlanta(self, nombre, descripcion):
         plantaNueva = Planta(nombre, descripcion)
-        self.daoPlantas.persistirPlanta(plantaNueva)
+        self.daoPlantas.persistir(plantaNueva)
         return plantaNueva.jsonificar()
 
 
@@ -21,7 +21,7 @@ class DispatcherPlanta:
 
     # funciones para recuperar datos persistidos
     def obtenerPlantas(self):
-        listaDePlantas = self.daoPlantas.obtenerPlantas()
+        listaDePlantas = self.daoPlantas.obtener()
         jsonDePlantas = []
         for planta in listaDePlantas:
             jsonDePlantas.append(planta.jsonificar())

@@ -11,7 +11,7 @@ class DispatcherRegistro():
     # funciones iniciadoras de objetos
     def crearReporte(self, idDePlnta, humedad, temperatura):
         registro = Registro(idDePlnta, humedad, temperatura)
-        self.daoRegistro.persistirRegistro(registro)
+        self.daoRegistro.persistir(registro)
         return registro.jsonificar()
 
 

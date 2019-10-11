@@ -5,16 +5,13 @@ from backend.Phyton.Registro import Registro
 
 class DaoRegistro(DaoGeneral):
 
-    @session
-    def persistirRegistro(self, registro):
-        self.session.add(registro)
-        return registro
+    classe = Registro
 
     @connecion
     def obtenerRegistroPorId(self, plantaId):
-        return self.session.query(Registro).filter(Registro.idPlanta == plantaId).all()
+        return self.currentSession.query(Registro).filter(Registro.idPlanta == plantaId).all()
 
     @connecion
     def obtenerRegistrosPorIdYFechas(self, plantaId, fechaInicio, fechaFin):
-        return self.session.query(Registro).filter(Registro.plantaId == plantaId, Registro.fecha > fechaInicio,
-                                                   Registro.fecha < fechaFin).all()
+        return self.currentSession.query(Registro).filter(Registro.plantaId == plantaId, Registro.fecha > fechaInicio,
+                                                          Registro.fecha < fechaFin).all()
