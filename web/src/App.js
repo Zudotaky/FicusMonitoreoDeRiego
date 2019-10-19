@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Favicon from './Favicon';
-import Plant from './Plant';
-import DataChart from './DataChart';
-import HeaderBar from './HeaderBar';
+import Favicon from './componentes/Favicon';
+import Plant from './componentes/Plant';
+import DataChart from './componentes/DataChart';
+import HeaderBar from './componentes/HeaderBar';
 function App() {
   return (
 
