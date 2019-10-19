@@ -1,38 +1,21 @@
+const fetch = require('node-fetch');
+let urlBase = "http://192.168.100.236:5000"
+
 class Servicios {
 
-    obtenerAlgo(){
-        var ourRequest = new XMLHttpRequest();
-        ourRequest.open('GET','https://learnwebcode.github.io/json-example/animals-1.json');
-        ourRequest.onload = function () {
-            var ourData = JSON.parse(ourRequest.responseText);
-            console.log(ourData);
-        };
-        ourRequest.send();
-    }
-
-    obtenerSensos(idPlanta, fechaInicio, fechaFin){
-        var xhr = new XMLHttpRequest();
-        var url = "url";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json");
-
-        xhr.onreadystatechange = function () { 
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                var json = JSON.parse(xhr.responseText);
-                console.log(json);
-            }
-        }
-        var data = JSON.stringify({"idPlanta": idPlanta,"fechaInicio":fechaInicio, "fechaFin": fechaFin});
-        xhr.send(data);
+    async obtenerEspacios(){
+        
+        let url = urlBase + "/Espacio/obtenerEspacios";
+        url = "https://jsonplaceholder.typicode.com/todos/1"
+        let response = await fetch(url).catch((error) => {console.log('pepepe',error)})
+        let espacios = await response.json()
+        console.log("espaciosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+        console.log(espacios)
+        return espacios;
 
     }
-
-    obtenerHumedadDeEntre(idPlanta, fechaInicio, fechaFin) {
-        return this.obtenerSensos(idPlanta,fechaInicio, fechaFin);
-    }
-
 }
- /*let spo = new Servicios();
- spo.populateAlbumsForArtist("Gorillaz");*/
+//let serv = new Servicios();
+//serv.obtenerEspacios();
 
 export default Servicios;

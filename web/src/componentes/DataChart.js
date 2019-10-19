@@ -4,8 +4,6 @@ import {
 } from 'recharts';
 import Servicios from './Servicios'
 
-let servi = new Servicios();
-servi.obtenerAlgo();
 
 const data = [
   {

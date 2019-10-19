@@ -1,14 +1,27 @@
 import React from 'react'
 import Planta from './Plant'
-
-let espacios = [{id: 1},{id: 2},{id: 3},{id: 4}];
+import Servicios from './Servicios';
 
 function ListaDeEspacios(){
-    return espacios.map((espacio, index) => {
-        return(
-         <tr key={espacio.id} ><Planta /> {espacio.id}</tr>
-        );
-    })
+    let serv = new Servicios()
+    let espacios = serv.obtenerEspacios()
+    console.log("espacios")
+    console.log(espacios)
+    console.log("espaciosaaaaaaassssssaaaaaaaaaaaa")
+    console.log(espacios.then(response => {return response.json();}));
+    return(
+        'pepepe'
+    )
+    // return espacios.then(espacio, index) => {
+    //     return(
+    //      <tr key={espacio['id']} > {espacio['id']} {espacio['nombre']} </tr>
+    //     );
+    // })
 }
+
+// completed: false
+// id: 1​
+// title: "delectus aut autem"
+// userId: 1
 
 export default ListaDeEspacios;
