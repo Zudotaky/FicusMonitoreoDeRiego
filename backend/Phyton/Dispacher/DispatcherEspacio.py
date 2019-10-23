@@ -1,9 +1,10 @@
 from backend.Phyton.Dao.DaoEspacio import DaoEspacio
+from backend.Phyton.Dispacher.DispacharGeneral import Dispacher
 from backend.Phyton.Espacio import Espacio
 from backend.Phyton.Relacion import Espacio_planta
 
 
-class DispatcherEspacio:
+class DispatcherEspacio(Dispacher):
 
     def __init__(self):
         self.daoEspacio = DaoEspacio()
@@ -11,7 +12,7 @@ class DispatcherEspacio:
     # funciones iniciadoras de objetos
     def crearEspacio(self, nombre, descripcion):
         espacio = Espacio(nombre,descripcion)
-        self.daoEspacio.persistirEspacio(espacio)
+        self.daoEspacio.persistir(espacio)
         return espacio.jsonificar()
 
 
@@ -19,11 +20,8 @@ class DispatcherEspacio:
 
     # funciones para recuperar datos persistidos
     def obtenerEspacios(self):
-        listaDeEspacios = self.daoEspacio.obtenerEspacio()
-        jsonDeEspacios = []
-        for planta in listaDeEspacios:
-            jsonDeEspacios.append(planta.jsonificar())
-        return jsonDeEspacios
+        listaDeEspacios = self.daoEspacio.obtener()
+        return self.jsonificarLista(listaDeEspacios)
 
 
     def obtenerEspacioPorId(self, id):
