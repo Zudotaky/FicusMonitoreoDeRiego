@@ -1,27 +1,23 @@
-import React from 'react'
-import Planta from './Plant'
-import Servicios from './Servicios';
+import React, { useState, useEffect } from "react";
+import Espacio from "./Espacio";
+import Servicios from "./Servicios";
 
-function ListaDeEspacios(){
-    let serv = new Servicios()
-    let espacios = serv.obtenerEspacios()
-    console.log("espacios")
-    console.log(espacios)
-    console.log("espaciosaaaaaaassssssaaaaaaaaaaaa")
-    console.log(espacios.then(response => {return response.json();}));
-    return(
-        'pepepe'
-    )
-    // return espacios.then(espacio, index) => {
-    //     return(
-    //      <tr key={espacio['id']} > {espacio['id']} {espacio['nombre']} </tr>
-    //     );
-    // })
+function ListaDeEspacios() {
+  const [espacios, setEspacios] = useState([]);
+
+  useEffect(() => {
+    new Servicios().obtenerEspacios().then(setEspacios);
+  });
+  
+  return espacios.map(espacio => (
+    <tr key={espacio.id}>
+      <Espacio {...espacio} />
+    </tr>
+  ));
+
+  //const plantasArray = plantas.filter((planta, index) => planta.id === id)
+
+  //Aca va el map
 }
-
-// completed: false
-// id: 1​
-// title: "delectus aut autem"
-// userId: 1
 
 export default ListaDeEspacios;

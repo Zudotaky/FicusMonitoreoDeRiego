@@ -9,6 +9,10 @@ function ListaDePlantas(){
          <tr key={planta.id} ><Planta /> {planta.id}</tr>
         );
     })
+
+    //const plantasArray = plantas.filter((planta, index) => planta.id === id)
+
+    //Aca va el map
 }
 
 export default ListaDePlantas;
