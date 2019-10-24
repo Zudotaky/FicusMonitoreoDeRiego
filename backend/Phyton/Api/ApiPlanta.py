@@ -74,3 +74,12 @@ class obtenerPorEspaioId(Resource):
         idEspacio = jsonRequest['idEspacio']
         listaDePlantas = dispacherPlanta.obtenerPlantasPorEspacioId(idEspacio)
         return {'Plantas': list(listaDePlantas)}
+
+
+@plantasRequest.route('/ObtenerSinEspacio', methods=['GET'])
+class ObtenerSinEspacio(Resource):
+
+    @plantasRequest.doc('lista_plantas')
+    def get(self):
+        listaDePlantas = dispacherPlanta.obtenerPlantasSinEspacio()
+        return {'Plantas': list(listaDePlantas)}

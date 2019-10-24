@@ -1,10 +1,11 @@
 from backend.Phyton.Dao.DaoPlanta import DaoPlanta
+from backend.Phyton.Dispacher.DispacharGeneral import Dispacher
 from backend.Phyton.Planta import Planta
 
 
 
 
-class DispatcherPlanta:
+class DispatcherPlanta(Dispacher):
 
     def __init__(self):
         self.daoPlantas = DaoPlanta()
@@ -16,16 +17,12 @@ class DispatcherPlanta:
         self.daoPlantas.persistir(plantaNueva)
         return plantaNueva.jsonificar()
 
-
     #funciones Actualizadoras de objetos
 
     # funciones para recuperar datos persistidos
     def obtenerPlantas(self):
         listaDePlantas = self.daoPlantas.obtener()
-        jsonDePlantas = []
-        for planta in listaDePlantas:
-            jsonDePlantas.append(planta.jsonificar())
-        return jsonDePlantas
+        return self.jsonificarLista(listaDePlantas)
 
 
     def obtenerPlantaPorId(self, id):
@@ -34,10 +31,12 @@ class DispatcherPlanta:
 
     def obtenerPlantasPorEspacioId(self, idEspacio):
         listaDePlantas = self.daoPlantas.obtenerPlantasPorEspacioId(idEspacio)
-        jsonDePlantas = []
-        for planta in listaDePlantas:
-            jsonDePlantas.append(planta.jsonificar())
-        return jsonDePlantas
+        return self.jsonificarLista(listaDePlantas)
+
+    def obtenerPlantasSinEspacio(self):
+        listasDePlantas = self.daoPlantas.obtenerPlantaSinEspacio()
+        return self.jsonificarLista(listasDePlantas)
+
 
 
 

@@ -1,8 +1,9 @@
 from backend.Phyton.Dao.DaoRegistro import DaoRegistro
+from backend.Phyton.Dispacher.DispacharGeneral import Dispacher
 from backend.Phyton.Registro import Registro
 
 
-class DispatcherRegistro():
+class DispatcherRegistro(Dispacher):
 
     def __init__(self):
         self.daoRegistro = DaoRegistro()
@@ -20,15 +21,9 @@ class DispatcherRegistro():
     # funciones para recuperar datos persistidos
     def obtenerRegistroPorIdPlanta(self, plantaId):
         listaDeRegistros = self.daoRegistro.obtenerRegistroPorId(plantaId)
-        jsonDeRegistros = []
-        for planta in listaDeRegistros:
-            jsonDeRegistros.append(planta.jsonificar())
-        return jsonDeRegistros
+        return self.jsonificarLista(listaDeRegistros)
 
 
     def obtenerRegistroPorIdPlantaYFecha(self, id, fechaInicio, fechaFin):
         listaDeRegistros = self.daoRegistro.obtenerRegistrosPorIdYFechas(id, fechaInicio, fechaFin)
-        jsonDeRegistros = []
-        for planta in listaDeRegistros:
-            jsonDeRegistros.append(planta.jsonificar())
-        return jsonDeRegistros
+        return self.jsonificarLista(listaDeRegistros)
