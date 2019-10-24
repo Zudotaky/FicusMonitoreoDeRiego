@@ -22,7 +22,7 @@ class crearEspacio(Resource):
         jsonRequest = crear.parse_args()
         nombre = jsonRequest['nombre']
         descripcion = jsonRequest['descripcion']
-        espacio = dispacherEspacio.crearEspacio(nombre, descripcion)
+        espacio = dispacherEspacio.crear(nombre, descripcion)
         return espacio
 
 

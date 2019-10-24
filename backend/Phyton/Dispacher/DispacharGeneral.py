@@ -2,6 +2,9 @@
 
 class Dispacher:
 
+    dao = None;
+
+
     def jsonificarLista(self,lista):
         jsonLista = []
         for planta in lista:

@@ -7,12 +7,12 @@ from backend.Phyton.Relacion import Espacio_planta
 class DispatcherEspacio(Dispacher):
 
     def __init__(self):
-        self.daoEspacio = DaoEspacio()
+        self.dao = DaoEspacio()
 
     # funciones iniciadoras de objetos
-    def crearEspacio(self, nombre, descripcion):
+    def crear(self, nombre, descripcion):
         espacio = Espacio(nombre,descripcion)
-        self.daoEspacio.persistir(espacio)
+        self.dao.persistir(espacio)
         return espacio.jsonificar()
 
 
@@ -20,16 +20,16 @@ class DispatcherEspacio(Dispacher):
 
     # funciones para recuperar datos persistidos
     def obtenerEspacios(self):
-        listaDeEspacios = self.daoEspacio.obtener()
+        listaDeEspacios = self.dao.obtener()
         return self.jsonificarLista(listaDeEspacios)
 
 
     def obtenerEspacioPorId(self, id):
-        espacio = self.daoEspacio.obtenerEspacioPorId(id)
+        espacio = self.dao.obtenerEspacioPorId(id)
         return espacio.jsonificar()
 
 
     def agregarPlantaAEspacio(self, idPlanta, idEspacio):
         espacio_planta = Espacio_planta(idPlanta, idEspacio)
-        self.daoEspacio.agregarPlantaAEspacio(espacio_planta)
+        self.dao.agregarPlantaAEspacio(espacio_planta)
         return espacio_planta
