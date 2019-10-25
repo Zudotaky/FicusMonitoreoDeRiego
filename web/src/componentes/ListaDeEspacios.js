@@ -7,7 +7,7 @@ function ListaDeEspacios() {
 
   useEffect(() => {
     new Servicios().obtenerEspacios().then(setEspacios);
-  });
+  }, []);
   
   return espacios.map(espacio => (
     <tr key={espacio.id}>
