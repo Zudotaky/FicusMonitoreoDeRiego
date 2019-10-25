@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from backend.Phyton.Dao.DaoRegistro import DaoRegistro
 from backend.Phyton.Dispacher.DispacharGeneral import Dispacher
 from backend.Phyton.Registro import Registro
@@ -11,7 +13,7 @@ class DispatcherRegistro(Dispacher):
 
     # funciones iniciadoras de objetos
     def crearReporte(self, idDePlnta, humedad, temperatura):
-        registro = Registro(idDePlnta, humedad, temperatura)
+        registro = Registro(idDePlnta, datetime.now().strftime(self.formatoDia), humedad, temperatura)
         self.dao.persistir(registro)
         return registro.jsonificar()
 

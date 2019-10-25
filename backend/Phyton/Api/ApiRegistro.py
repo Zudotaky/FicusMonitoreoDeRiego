@@ -10,8 +10,8 @@ dispacherRegistro = DispatcherRegistro()
 
 crear = reqparse.RequestParser()
 crear.add_argument('id', type=int, required=True)
-crear.add_argument('humedad', type=str, required=True)
-crear.add_argument('temperatura', type=str, required=True)
+crear.add_argument('humedad', type=int, required=False)
+crear.add_argument('temperatura', type=int, required=False)
 
 # Servicios De Reporte
 @registroRequest.route('/crearReporte', methods=['POST'])
@@ -33,7 +33,7 @@ class crearReporte(Resource):
 obtenerPorIdPlanta = reqparse.RequestParser()
 obtenerPorIdPlanta.add_argument('id', type=int, required=True)
 
-@registroRequest.route('/obtenerSensosIPord',methods=['POST'])
+@registroRequest.route('/obtenerSensosPorId',methods=['POST'])
 @registroRequest.expect(obtenerPorIdPlanta)
 class obtenerReportePorIdPlanta(Resource):
 
