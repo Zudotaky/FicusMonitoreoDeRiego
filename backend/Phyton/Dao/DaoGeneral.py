@@ -19,4 +19,10 @@ class DaoGeneral:
     def obtener(self):
         return self.currentSession.query(self.classe).all()
 
+
+# from backend.Phyton.base import Base
+# from backend.Phyton.Planta import Planta
+# from backend.Phyton.Espacio import Espacio
+# from backend.Phyton.Registro import Registro
+#
 # Base.metadata.create_all(DaoGeneral.engine)

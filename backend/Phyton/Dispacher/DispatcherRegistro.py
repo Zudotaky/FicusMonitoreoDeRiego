@@ -6,13 +6,13 @@ from backend.Phyton.Registro import Registro
 class DispatcherRegistro(Dispacher):
 
     def __init__(self):
-        self.daoRegistro = DaoRegistro()
+        self.dao = DaoRegistro()
         self.formatoDia ="%Y-%m-%d %H:%M:%S"
 
     # funciones iniciadoras de objetos
     def crearReporte(self, idDePlnta, humedad, temperatura):
         registro = Registro(idDePlnta, humedad, temperatura)
-        self.daoRegistro.persistir(registro)
+        self.dao.persistir(registro)
         return registro.jsonificar()
 
 
@@ -20,10 +20,10 @@ class DispatcherRegistro(Dispacher):
 
     # funciones para recuperar datos persistidos
     def obtenerRegistroPorIdPlanta(self, plantaId):
-        listaDeRegistros = self.daoRegistro.obtenerRegistroPorId(plantaId)
+        listaDeRegistros = self.dao.obtenerRegistroPorId(plantaId)
         return self.jsonificarLista(listaDeRegistros)
 
 
     def obtenerRegistroPorIdPlantaYFecha(self, id, fechaInicio, fechaFin):
-        listaDeRegistros = self.daoRegistro.obtenerRegistrosPorIdYFechas(id, fechaInicio, fechaFin)
+        listaDeRegistros = self.dao.obtenerRegistrosPorIdYFechas(id, fechaInicio, fechaFin)
         return self.jsonificarLista(listaDeRegistros)

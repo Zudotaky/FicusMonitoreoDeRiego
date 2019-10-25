@@ -12,6 +12,7 @@ dispacherEspacio = DispatcherEspacio()
 crear = reqparse.RequestParser()
 crear.add_argument('descripcion', type=str, required=True)
 crear.add_argument('nombre', type=str, required=True)
+crear.add_argument('url')
 
 
 @espacioRequest.route('/Agregar',methods=['POST'])
@@ -22,7 +23,8 @@ class crearEspacio(Resource):
         jsonRequest = crear.parse_args()
         nombre = jsonRequest['nombre']
         descripcion = jsonRequest['descripcion']
-        espacio = dispacherEspacio.crearEspacio(nombre, descripcion)
+        url = jsonRequest['url']
+        espacio = dispacherEspacio.crear(nombre, descripcion, url)
         return espacio
 
 

@@ -8,22 +8,23 @@ dispacherPlanta = DispatcherPlanta()
 
 # Servicios De Planta
 
+crear = reqparse.RequestParser()
+crear.add_argument('descripcion', type=str, required=True)
+crear.add_argument('nombre', type=str, required=True)
+crear.add_argument('url')
 
 
-crearPlanta = reqparse.RequestParser()
-crearPlanta.add_argument('descripcion', type=str, required=True)
-crearPlanta.add_argument('nombre', type=str, required=True)
-
-@plantasRequest.route('/Agregar', methods=['POST'])
-@plantasRequest.expect(crearPlanta)
+@plantasRequest.route('/Agregar',methods=['POST'])
+@plantasRequest.expect(crear)
 class crearPlanta(Resource):
 
     @plantasRequest.doc('planta')
     def post(self):
-        jsonRequest = crearPlanta.parse_args()
+        jsonRequest = crear.parse_args()
         nombre = jsonRequest['nombre']
         descripcion = jsonRequest['descripcion']
-        planta = dispacherPlanta.crearPlanta(nombre, descripcion)
+        url = jsonRequest['url']
+        planta = dispacherPlanta.crearPlanta(nombre, descripcion, url)
         return planta
 
 # Servicios que modifican
