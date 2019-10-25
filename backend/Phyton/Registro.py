@@ -9,7 +9,7 @@ class Registro(Base, jsonificable):
 
     __tablename__ = 'registro'
     fecha = Column(Date, primary_key=True)
-    plantaId = Column(Integer, ForeignKey('planta.id'), primary_key=True)
+    plantaId = Column(Integer, ForeignKey('plantas.id'), primary_key=True)
     humedad = Column(Integer)
     temperatura = Column(Integer)
 

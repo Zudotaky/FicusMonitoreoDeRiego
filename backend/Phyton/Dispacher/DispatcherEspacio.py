@@ -10,8 +10,8 @@ class DispatcherEspacio(Dispacher):
         self.dao = DaoEspacio()
 
     # funciones iniciadoras de objetos
-    def crear(self, nombre, descripcion):
-        espacio = Espacio(nombre,descripcion)
+    def crear(self, nombre, descripcion, url):
+        espacio = Espacio(nombre,descripcion, url)
         self.dao.persistir(espacio)
         return espacio.jsonificar()
 

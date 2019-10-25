@@ -12,8 +12,8 @@ class DispatcherPlanta(Dispacher):
 
 
     #funciones iniciadoras de objetos
-    def crearPlanta(self, nombre, descripcion):
-        plantaNueva = Planta(nombre, descripcion)
+    def crearPlanta(self, nombre, descripcion, url):
+        plantaNueva = Planta(nombre, descripcion, url)
         self.dao.persistir(plantaNueva)
         return plantaNueva.jsonificar()
 
