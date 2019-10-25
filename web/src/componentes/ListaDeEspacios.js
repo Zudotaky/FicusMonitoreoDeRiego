@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Espacio from "./Espacio";
 import Servicios from "./Servicios";
 
-function ListaDeEspacios() {
-  const [espacios, setEspacios] = useState([]);
+function ListaDeEspacios(props) {
+  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props;
 
   useEffect(() => {
     new Servicios().obtenerEspacios().then(setEspacios);
@@ -11,7 +11,11 @@ function ListaDeEspacios() {
   
   return espacios.map(espacio => (
     <tr key={espacio.id}>
-      <Espacio {...espacio} />
+      <Espacio 
+        {...espacio} 
+        handleClick={() => setEspacioSeleccionado(espacio.id)} 
+        selected={espacio.id === espacioSeleccionado} 
+      />
     </tr>
   ));
 

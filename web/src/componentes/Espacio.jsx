@@ -15,7 +15,7 @@ class Espacio extends Component{
 
         return(
   //          <div onClick={()=>handleClick(id)}>
-            <div className="card">
+            <div className="card" onClick={this.props.handleClick} /*style={props.selected ? "backgroundColor: red": ""}*/>
                 <img className="card-img-top" src={'https://cdn.homedit.com/wp-content/uploads/2016/08/DIY-pipe-plant-stand-300x250.jpg'} alt="PlantImage"/>
                 <h4 className="lineaDebajo"><b>{nombre}</b></h4>
                 <p>{descripcion}</p>

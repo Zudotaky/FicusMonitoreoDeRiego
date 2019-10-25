@@ -5,7 +5,7 @@ import {
 import Servicios from './Servicios'
 
 
-const data = [
+/*const data = [
   {
     name: getCurrentDateFormated(), uv: "Seco", pv: 0, amt: 0,
   },
@@ -39,7 +39,8 @@ const data = [
   {
     name: getCurrentDateFormated(), uv: "Seco", pv: 0, amt: 0,
   },
-];
+];*/
+
 
 function getCurrentDateFormated() {
 
@@ -62,21 +63,30 @@ export default class DataChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/Lrffmzfc/';
 
   render() {
-    return (
-      <AreaChart
-        width={700}
-        height={500}
-        data={data}
-        margin={{
-          top: 20, right: 30, left: 10, bottom: 10,
-        }}
-      >
-        <CartesianGrid strokeDasharray="4 4" />
-        <XAxis dataKey="name" />
-        <YAxis type="category" />
-        <Tooltip />
-        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-      </AreaChart>
-    );
-  }
+    if (this.props.dataPlanta){
+      const data = this.props.dataPlanta.map( datos => {
+        datos.name = datos.fecha
+        datos.uv = datos.humedad
+      })
+
+      return (
+        <AreaChart
+          width={700}
+          height={500}
+          data={data}
+          margin={{
+            top: 20, right: 30, left: 10, bottom: 10,
+          }}
+        >
+          <CartesianGrid strokeDasharray="4 4" />
+          <XAxis dataKey="name" />
+          <YAxis type="category" />
+          <Tooltip />
+          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+        </AreaChart>
+      );
+    } else { 
+      return <div> asd </div>
+    }
+  } 
 }

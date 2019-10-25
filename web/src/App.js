@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Favicon from './componentes/Favicon';
 import ListaDePlantas from './componentes/ListaDePlantas'
@@ -9,8 +9,13 @@ import {Container, Row, Col} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  return (
+  const [espacios, setEspacios] = useState([]);
+  const [plantas, setPlantas] = useState([]);
+  const [espacioSeleccionado, setEspacioSeleccionado] = useState(null)
+  const [plantaSeleccionada, setPlantaSeleccionada] = useState(null)
+  const [dataPlanta, setDataPlanta] = useState(null)
 
+  return (
     <div className="App">
       <head>
         <Favicon />
@@ -21,13 +26,25 @@ function App() {
             <Container fluid= {true}>
               <Row>
                 <Col md={2.5}>
-                  <ListaDeEspacios />
+                  <ListaDeEspacios 
+                    espacios={espacios} 
+                    setEspacios={setEspacios} 
+                    espacioSeleccionado={espacioSeleccionado} 
+                    setEspacioSeleccionado={setEspacioSeleccionado} 
+                  />
                 </Col>
                 <Col md={2.5}>
-                  <ListaDePlantas />
+                  <ListaDePlantas 
+                    plantas={plantas} 
+                    setPlantas={setPlantas} 
+                    espacioSeleccionado={espacioSeleccionado}
+                    plantaSeleccionada={plantaSeleccionada}
+                    setPlantaSeleccionada={setPlantaSeleccionada}
+                    setDataPlanta={setDataPlanta}
+                  />
                 </Col>
                 <Col md={6}>
-                  <DataChart />
+                  <DataChart dataPlanta = {dataPlanta} />
                 </Col>
               </Row>
             </Container>
