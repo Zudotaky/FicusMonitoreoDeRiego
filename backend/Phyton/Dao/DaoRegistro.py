@@ -8,10 +8,10 @@ class DaoRegistro(DaoGeneral):
     classe = Registro
 
     @connecion
-    def obtenerRegistroPorId(self, plantaId):
-        return self.currentSession.query(Registro).filter(Registro.idPlanta == plantaId).all()
+    def obtenerRegistroPorId(self, idplanta):
+        return self.currentSession.query(Registro).filter(Registro.plantaId == idplanta).all()
 
     @connecion
     def obtenerRegistrosPorIdYFechas(self, plantaId, fechaInicio, fechaFin):
-        return self.currentSession.query(Registro).filter(Registro.plantaId == plantaId, Registro.fecha > fechaInicio,
+            return self.currentSession.query(Registro).filter(Registro.plantaId == plantaId, Registro.fecha > fechaInicio,
                                                           Registro.fecha < fechaFin).all()
