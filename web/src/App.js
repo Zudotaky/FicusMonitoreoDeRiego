@@ -7,6 +7,7 @@ import DataChart from './componentes/DataChart';
 import HeaderBar from './componentes/HeaderBar';
 import {Container, Row, Col} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css';
+import Grafico from './componentes/Grafico';
 
 function App() {
   const [espacios, setEspacios] = useState([]);
@@ -25,7 +26,7 @@ function App() {
           <div>
             <Container fluid= {true}>
               <Row>
-                <Col md={2.5}>
+                <Col md={3}>
                   <ListaDeEspacios 
                     espacios={espacios} 
                     setEspacios={setEspacios} 
@@ -33,7 +34,7 @@ function App() {
                     setEspacioSeleccionado={setEspacioSeleccionado} 
                   />
                 </Col>
-                <Col md={2.5}>
+                <Col md={3}>
                   <ListaDePlantas 
                     plantas={plantas} 
                     setPlantas={setPlantas} 
@@ -44,7 +45,7 @@ function App() {
                   />
                 </Col>
                 <Col md={6}>
-                  <DataChart dataPlanta = {dataPlanta} />
+                <Grafico plantaSeleccionada={plantaSeleccionada} setDataPlanta={setDataPlanta} dataPlanta={dataPlanta} />
                 </Col>
               </Row>
             </Container>

@@ -18,10 +18,6 @@ function ListaDeEspacios(props) {
       />
     </tr>
   ));
-
-  //const plantasArray = plantas.filter((planta, index) => planta.id === id)
-
-  //Aca va el map
 }
 
 export default ListaDeEspacios;

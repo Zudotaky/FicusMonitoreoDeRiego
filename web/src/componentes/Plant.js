@@ -16,9 +16,10 @@ function calcularEstado(humedad){
 }
 
 function Plant(props){
+    console.log(props)
     return(
-        <div className="card" onClick={() => props.handleClick}>
-            <img className="card-img-top" src={'https://cdn.homedit.com/wp-content/uploads/2016/08/DIY-pipe-plant-stand-300x250.jpg'} alt="PlantImage"/>
+        <div className="card" onClick={() => props.handleClick(props.id)}>
+            <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
             <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
             <p>Estado de la planta: {calcularEstado(900)}</p>
         </div>

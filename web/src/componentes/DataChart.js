@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useEffect } from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
@@ -59,34 +59,27 @@ function getCurrentDateFormated() {
     return "10:25:32 01/02/1993";
   }
 
-export default class DataChart extends PureComponent {
+export default class DataChart {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/Lrffmzfc/';
 
   render() {
-    if (this.props.dataPlanta){
-      const data = this.props.dataPlanta.map( datos => {
-        datos.name = datos.fecha
-        datos.uv = datos.humedad
-      })
-
-      return (
-        <AreaChart
-          width={700}
-          height={500}
-          data={data}
-          margin={{
-            top: 20, right: 30, left: 10, bottom: 10,
-          }}
-        >
-          <CartesianGrid strokeDasharray="4 4" />
-          <XAxis dataKey="name" />
-          <YAxis type="category" />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
-      );
-    } else { 
-      return <div> asd </div>
-    }
+    const {dataPlanta} = this.props
+    
+    return (
+      <AreaChart
+        width={700}
+        height={500}
+        data={dataPlanta ? dataPlanta : []}
+        margin={{
+          top: 20, right: 30, left: 10, bottom: 10,
+        }}
+      >
+        <CartesianGrid strokeDasharray="4 4" />
+        <XAxis dataKey="name" />
+        <YAxis type="category" />
+        <Tooltip />
+        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+      </AreaChart>
+    );
   } 
 }

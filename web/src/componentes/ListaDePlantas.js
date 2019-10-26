@@ -2,25 +2,26 @@ import React, {useEffect} from 'react'
 import Planta from './Plant'
 import Servicios from './Servicios';
 
-
 function ListaDePlantas(props){
     const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado, setDataPlanta} = props;
-
-    if (espacioSeleccionado){
+   
+    useEffect(() => {
         new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas);
-    } else {
+    }, [espacioSeleccionado]);
+
+    if (!espacioSeleccionado){
         return <span>Seleccione un espacio</span>
     }
 
-    const clickHandler = (idPlanta) => {
+    const handleClick = (plantaId) => {
+        new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta);
 
-            new Servicios().obtenerDataChart(idPlanta).then(console.log);
-
+        setPlantaSeleccionada(plantaId)
     }
 
     return plantas.map(planta => <tr key={planta.id} >
             <Planta {...planta} 
-                handleClick={() => clickHandler(planta.id)} 
+                handleClick={() => handleClick} 
                 selected={planta.id === plantaSeleccionada}  />
         </tr>
     )
