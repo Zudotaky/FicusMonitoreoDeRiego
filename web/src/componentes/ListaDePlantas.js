@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react'
 import Planta from './Plant'
-import Servicios from './Servicios';
+import Servicios from './Servicios'
 
 function ListaDePlantas(props){
-    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado, setDataPlanta} = props;
+    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado, setDataPlanta} = props
    
     useEffect(() => {
-        new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas);
-    }, [espacioSeleccionado]);
+        new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
+    }, [espacioSeleccionado])
 
     if (!espacioSeleccionado){
         return <span>Seleccione un espacio</span>
     }
 
     const handleClick = (plantaId) => {
-        new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta);
-
+        new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta)
+        // console.log(plantaId)
         setPlantaSeleccionada(plantaId)
     }
 
@@ -31,4 +31,4 @@ function ListaDePlantas(props){
     //Aca va el map
 }
 
-export default ListaDePlantas;
+export default ListaDePlantas

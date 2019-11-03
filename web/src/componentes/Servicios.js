@@ -1,18 +1,18 @@
-const fetch = require('node-fetch');
-let urlBase = "http://192.168.100.236:5000"
-urlBase = "http://localhost:5000"
+const fetch = require('node-fetch')
+let urlBase = 'http://192.168.100.236:5000'
+urlBase = 'http://localhost:5000'
 
 class Servicios {
 
     obtenerEspacios(){
-        const url = new URL("/Espacio/obtenerEspacios", urlBase).toString();
+        const url = new URL('/Espacio/obtenerEspacios', urlBase).toString()
         
         return fetch(url).then(res => res.json()).then(({ Espacios }) => Espacios)
     }
 
     obtenerPlantas(idEspacio){
         //if (!idEspacio) {return []}
-        const url = new URL("/Plantas/ObtenerPorEspaioId", urlBase).toString();
+        const url = new URL('/Plantas/ObtenerPorEspaioId', urlBase).toString()
 
         return fetch(url, {
             method: 'POST',
@@ -24,26 +24,32 @@ class Servicios {
     }
 
     async obtenerDataChart(idPlanta){
-        const url = new URL("/Registro/obtenerSensosPorId", urlBase).toString();
+        const url = new URL('/Registro/obtenerSensosPorId', urlBase).toString()
 
         // return [
         //     {uv: 7, name: '23:11:22 04/02/2000'},
         //     {uv: 666, name: '23:11:22 04/02/2001'},
         //     {uv: 1023, name: '23:11:22 04/02/2002'}
         // ]
-
-        const response = fetch(url, {
+        
+        const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify({id: idPlanta}),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => res.json()).then(({Registros}) => Registros.map(datos => {
+        })
+        console.log(response)
+        const json = await response.json()
+        console.log(json)
+        const registros = json.Registros.map(datos => {
             datos.name = datos.fecha
             datos.uv = datos.humedad
-        }))
-        return response;
+            return datos
+        })
+        console.log('1 ' , registros)
+        return registros
     }
 }
 
-export default Servicios;
+export default Servicios
