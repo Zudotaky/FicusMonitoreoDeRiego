@@ -11,6 +11,3 @@
 ![alt text](https://github.com/Zudotaky/FicusMonitoreoDeRiego/blob/master/ArquitecturaWeb.jpg)
 
 ![alt text](https://github.com/Zudotaky/FicusMonitoreoDeRiego/blob/master/ArquitecturaServidor.jpg)
-
-
-Entregas: N/N
