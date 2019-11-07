@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Espacio from "./Espacio";
-import Servicios from "./Servicios";
+import React, { useState, useEffect } from 'react'
+import Espacio from './Espacio'
+import Servicios from './Servicios'
 
 function ListaDeEspacios(props) {
-  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props;
+  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
 
   useEffect(() => {
-    new Servicios().obtenerEspacios().then(setEspacios);
-  }, []);
+    new Servicios().obtenerEspacios().then(setEspacios)
+  }, [])
   
   return espacios.map(espacio => (
     <tr key={espacio.id}>
@@ -17,7 +17,7 @@ function ListaDeEspacios(props) {
         selected={espacio.id === espacioSeleccionado} 
       />
     </tr>
-  ));
+  ))
 }
 
-export default ListaDeEspacios;
+export default ListaDeEspacios

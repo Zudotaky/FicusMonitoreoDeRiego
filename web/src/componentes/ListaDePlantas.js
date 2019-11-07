@@ -3,7 +3,7 @@ import Planta from './Plant'
 import Servicios from './Servicios'
 
 function ListaDePlantas(props){
-    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado, setDataPlanta} = props
+    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado} = props
    
     useEffect(() => {
         new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
@@ -11,24 +11,16 @@ function ListaDePlantas(props){
 
     if (!espacioSeleccionado){
         return <span>Seleccione un espacio</span>
-    }
+    }               
 
-    const handleClick = (plantaId) => {
-        new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta)
-        // console.log(plantaId)
-        setPlantaSeleccionada(plantaId)
-    }
-
-    return plantas.map(planta => <tr key={planta.id} >
-            <Planta {...planta} 
-                handleClick={() => handleClick} 
-                selected={planta.id === plantaSeleccionada}  />
+    return plantas.map(planta => 
+        <tr key={planta.id} >
+            <Planta
+                {...planta} 
+               handleClick={() => setPlantaSeleccionada(planta.id)}
+               selected={planta.id === plantaSeleccionada}  />
         </tr>
     )
-
-    //const plantasArray = plantas.filter((planta, index) => planta.id === id)
-
-    //Aca va el map
 }
 
 export default ListaDePlantas

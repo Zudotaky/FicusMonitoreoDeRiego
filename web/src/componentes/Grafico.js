@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Servicios from "./Servicios";
-import DataChart from "./DataChart"
+import React, { useState, useEffect } from 'react'
+import Servicios from './Servicios'
+import DataChart from './DataChart'
 
 function Grafico(props) {
-  const {plantaSeleccionada, setDataPlanta, dataPlanta} = props;
+  const {plantaSeleccionada, setDataPlanta, dataPlanta} = props
 
   useEffect(() => {
-    new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta);
-  }, [plantaSeleccionada]);
+    new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta)
+  }, [plantaSeleccionada])
 
   if (!plantaSeleccionada) {
-    return <span>Grafico</span>
+    return <span>El gráfico se ve al seleccionar una planta</span>
   }
 
+  
   return (
     <DataChart dataPlanta={dataPlanta} />
   )
 }
 
-export default Grafico;
+export default Grafico

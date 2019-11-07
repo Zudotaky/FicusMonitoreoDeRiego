@@ -39,15 +39,14 @@ class Servicios {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response)
-        const json = await response.json()
-        console.log(json)
-        const registros = json.Registros.map(datos => {
-            datos.name = datos.fecha
-            datos.uv = datos.humedad
-            return datos
-        })
-        console.log('1 ' , registros)
+        const registros = await response.json()
+        // const registros = json.Registros.map(datos => {
+        //     datos.name = datos.fecha
+        //     datos.uv = datos.humedad
+        //     return datos
+        // })
+        console.log('se llamo el servicio para obtener sensos')
+        console.log(registros)
         return registros
     }
 }

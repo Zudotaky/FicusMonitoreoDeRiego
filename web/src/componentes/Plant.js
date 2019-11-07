@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import Servicios from './Servicios'
+import DataChart from './DataChart'
 
 // const imageStyle = {
 //     width: '100%',
@@ -17,16 +18,24 @@ function calcularEstado(humedad){
     return <font size="2" color="Blue">Exceso de riego.</font>
 }
 
-const handleClick = (plantaId) => {
-    new Servicios().obtenerDataChart(plantaId).then((planta) => {
-        console.log(planta)
-    })
-    // setPlantaSeleccionada(plantaId)
-}
+// const obtenerDataPlanta = (plantaId, props) => {
+//     let dataPlanta= null
+//     new Servicios().obtenerDataChart(plantaId).then((registros) => {
+//         dataPlanta = registros
+//         props.plantaSeleccionada = plantaId
+//     })
+//     console.log('planta seleccionada')
+//     console.log(props.plantaSeleccionada)
+//     return dataPlanta
+// }
 
 function Plant(props){
+    //const {plantaSeleccionada, setPlantaSeleccionada, setDataPlanta} = props
+    //        <div className="card" onClick={this.props.handleClick}>
+   //Otra forma de hacer el click 
+    
     return(
-        <div className="card" onClick={() => handleClick(props.id)}>
+        <div className="card" onClick={props.handleClick}>
             <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
             <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
             <p>Estado de la planta: {calcularEstado(900)}</p>
