@@ -1,38 +1,54 @@
+const fetch = require('node-fetch')
+let urlBase = 'http://192.168.100.236:5000'
+urlBase = 'http://localhost:5000'
+
 class Servicios {
 
-    obtenerAlgo(){
-        var ourRequest = new XMLHttpRequest();
-        ourRequest.open('GET','https://learnwebcode.github.io/json-example/animals-1.json');
-        ourRequest.onload = function () {
-            var ourData = JSON.parse(ourRequest.responseText);
-            console.log(ourData);
-        };
-        ourRequest.send();
+    obtenerEspacios(){
+        const url = new URL('/Espacio/obtenerEspacios', urlBase).toString()
+        
+        return fetch(url).then(res => res.json()).then(({ Espacios }) => Espacios)
     }
 
-    obtenerSensos(idPlanta, fechaInicio, fechaFin){
-        var xhr = new XMLHttpRequest();
-        var url = "url";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json");
+    obtenerPlantas(idEspacio){
+        //if (!idEspacio) {return []}
+        const url = new URL('/Plantas/ObtenerPorEspaioId', urlBase).toString()
 
-        xhr.onreadystatechange = function () { 
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                var json = JSON.parse(xhr.responseText);
-                console.log(json);
+        return fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({idEspacio}),
+            headers: {
+                'Content-Type': 'application/json'
             }
-        }
-        var data = JSON.stringify({"idPlanta": idPlanta,"fechaInicio":fechaInicio, "fechaFin": fechaFin});
-        xhr.send(data);
-
+        }).then(res => res.json()).then(({ Plantas }) => Plantas)
     }
 
-    obtenerHumedadDeEntre(idPlanta, fechaInicio, fechaFin) {
-        return this.obtenerSensos(idPlanta,fechaInicio, fechaFin);
-    }
+    async obtenerDataChart(idPlanta){
+        const url = new URL('/Registro/obtenerSensosPorId', urlBase).toString()
 
+        // return [
+        //     {uv: 7, name: '23:11:22 04/02/2000'},
+        //     {uv: 666, name: '23:11:22 04/02/2001'},
+        //     {uv: 1023, name: '23:11:22 04/02/2002'}
+        // ]
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({id: idPlanta}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const registros = await response.json()
+        // const registros = json.Registros.map(datos => {
+        //     datos.name = datos.fecha
+        //     datos.uv = datos.humedad
+        //     return datos
+        // })
+        console.log('se llamo el servicio para obtener sensos')
+        console.log(registros)
+        return registros
+    }
 }
- /*let spo = new Servicios();
- spo.populateAlbumsForArtist("Gorillaz");*/
 
-export default Servicios;
+export default Servicios

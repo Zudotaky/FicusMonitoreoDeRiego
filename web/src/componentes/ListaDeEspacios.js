@@ -1,14 +1,21 @@
-import React from 'react'
-import Planta from './Plant'
+import React, { useState, useEffect } from 'react'
+import Espacio from './Espacio'
+import Servicios from './Servicios'
 
-let espacios = [{id: 1},{id: 2},{id: 3},{id: 4}];
+function ListaDeEspacios(props) {
+  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
 
-function ListaDeEspacios(){
-    return espacios.map((espacio, index) => {
-        return(
-         <tr key={espacio.id} ><Planta /> {espacio.id}</tr>
-        );
-    })
+  useEffect(() => {
+    new Servicios().obtenerEspacios().then(setEspacios)
+  }, [])
+  
+  return espacios.map(espacio => (
+      <Espacio key={espacio.id}
+        {...espacio} 
+        handleClick={() => setEspacioSeleccionado(espacio.id)} 
+        selected={espacio.id === espacioSeleccionado} 
+      />
+  ))
 }
 
-export default ListaDeEspacios;
+export default ListaDeEspacios

@@ -1,14 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Planta from './Plant'
+import Servicios from './Servicios'
 
-let plantas = [{id: 1},{id: 2},{id: 3},{id: 4}];
 
-function ListaDePlantas(){
-    return plantas.map((planta, index) => {
-        return(
-         <tr key={planta.id} ><Planta /> {planta.id}</tr>
-        );
-    })
+function ListaDePlantas(props){
+    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado} = props
+   
+    useEffect(() => {
+        new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
+    }, [espacioSeleccionado])
+
+    if (!espacioSeleccionado){
+        return <span>Seleccione un espacio</span>
+    }               
+
+    return plantas.map(planta => 
+        <tr key={planta.id} >
+            <Planta
+                {...planta} 
+               handleClick={() => setPlantaSeleccionada(planta.id)}
+               selected={planta.id === plantaSeleccionada}  />
+        </tr>
+    )
 }
 
-export default ListaDePlantas;
+export default ListaDePlantas
