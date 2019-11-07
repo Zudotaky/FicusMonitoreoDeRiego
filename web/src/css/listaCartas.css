@@ -1,0 +1,12 @@
+.listaCartas{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffff;
+    background-clip: border-box;
+    max-width: 300px;
+    max-height: 350px;
+    margin: 20px auto 100px -10px;
+    }

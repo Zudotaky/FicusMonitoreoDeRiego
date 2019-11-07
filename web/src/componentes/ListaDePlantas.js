@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import Planta from './Plant'
 import Servicios from './Servicios'
 
+
 function ListaDePlantas(props){
     const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado} = props
    

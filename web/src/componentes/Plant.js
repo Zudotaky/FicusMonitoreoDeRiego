@@ -2,6 +2,7 @@
 import React from 'react'
 import Servicios from './Servicios'
 import DataChart from './DataChart'
+import '../css/card.css'
 
 // const imageStyle = {
 //     width: '100%',

@@ -10,13 +10,11 @@ function ListaDeEspacios(props) {
   }, [])
   
   return espacios.map(espacio => (
-    <tr key={espacio.id}>
-      <Espacio 
+      <Espacio key={espacio.id}
         {...espacio} 
         handleClick={() => setEspacioSeleccionado(espacio.id)} 
         selected={espacio.id === espacioSeleccionado} 
       />
-    </tr>
   ))
 }
 

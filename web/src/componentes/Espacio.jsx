@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Planta from './Plant'
-import Servicios from './Servicios';
+import Servicios from './Servicios'
+import '../css/card.css'
 
 function Espacio(props){
         const {id} = props

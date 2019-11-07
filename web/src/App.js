@@ -8,6 +8,9 @@ import HeaderBar from './componentes/HeaderBar'
 import {Container, Row, Col} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import Grafico from './componentes/Grafico'
+import './css/listaCartas.css'
+import './css/margenChart.css'
+
 
 function App() {
   const [espacios, setEspacios] = useState([])
@@ -25,16 +28,16 @@ function App() {
         <HeaderBar />
           <div>
             <Container fluid= {true}>
-              <Row>
-                <Col md={3}>
+              <Col>
+                <Row className='listaCartas' md={3}>
                   <ListaDeEspacios 
                     espacios={espacios} 
                     setEspacios={setEspacios} 
                     espacioSeleccionado={espacioSeleccionado} 
                     setEspacioSeleccionado={setEspacioSeleccionado} 
                   />
-                </Col>
-                <Col md={3}>
+                </Row>
+                <Row className='listaCartas' md={3}>
                   <ListaDePlantas 
                     plantas={plantas} 
                     setPlantas={setPlantas} 
@@ -44,15 +47,15 @@ function App() {
                     setDataPlanta={setDataPlanta}
                     dataPlanta={dataPlanta}
                   />
-                </Col>
-                <Col md={6}>
+                </Row>
+                <Row className='margenChart' md={6}>
                   <h1>{dataPlanta.data}</h1>
                   <Grafico 
                     plantaSeleccionada={plantaSeleccionada}
                     setDataPlanta={setDataPlanta}
                     dataPlanta={dataPlanta} />
-                </Col>
-              </Row>
+                </Row>
+              </Col>
             </Container>
           </div>
       </body>  
