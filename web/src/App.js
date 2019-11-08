@@ -3,7 +3,6 @@ import './App.css'
 import Favicon from './componentes/Favicon'
 import ListaDePlantas from './componentes/ListaDePlantas'
 import ListaDeEspacios from './componentes/ListaDeEspacios'
-import DataChart from './componentes/DataChart'
 import HeaderBar from './componentes/HeaderBar'
 import {Container, Row, Col} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -29,14 +28,14 @@ function App() {
           <div>
             <Container fluid= {true}>
               <Col>
-                <Row className='listaCartas' md={3}>
-                  <ListaDeEspacios 
-                    espacios={espacios} 
-                    setEspacios={setEspacios} 
-                    espacioSeleccionado={espacioSeleccionado} 
-                    setEspacioSeleccionado={setEspacioSeleccionado} 
-                  />
-                </Row>
+                  <Row className='listaCartas' md={3}>
+                    <ListaDeEspacios 
+                      espacios={espacios} 
+                      setEspacios={setEspacios} 
+                      espacioSeleccionado={espacioSeleccionado} 
+                      setEspacioSeleccionado={setEspacioSeleccionado} 
+                    />
+                  </Row>
                 <Row className='listaCartas' md={3}>
                   <ListaDePlantas 
                     plantas={plantas} 

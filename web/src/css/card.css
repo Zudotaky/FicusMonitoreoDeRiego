@@ -9,7 +9,7 @@
   }
   
   .card-img-top {
-    width: 100%;
+    width: 280px !important;
     height: 15vw;
     object-fit: cover;
   }

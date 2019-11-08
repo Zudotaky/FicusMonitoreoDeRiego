@@ -3,7 +3,7 @@ import React from 'react'
 import Servicios from './Servicios'
 import DataChart from './DataChart'
 import '../css/card.css'
-
+import '../css/textInCards.css'
 // const imageStyle = {
 //     width: '100%',
 // }
@@ -38,10 +38,12 @@ function Plant(props){
     return(
         <div className="card" onClick={props.handleClick}>
             <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
-            <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
-            <p>Estado de la planta: {calcularEstado(900)}</p>
-            <h4 className="lineaDebajo"></h4>
-            <p>{props.descripcion}</p>
+            <div className="textInCards">
+                <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
+                <p>Estado de la planta: {calcularEstado(900)}</p>
+                <h4 className="lineaDebajo"></h4>
+                <p>{props.descripcion}</p>
+            </div>
         </div>
     )
 }

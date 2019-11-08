@@ -1,12 +1,21 @@
 .listaCartas{
+    overflow: scroll;
+    scrollbar-width: none;
+    overflow-y: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     min-width: 0;
+    min-height: 300px;
     word-wrap: break-word;
     background-color: #ffff;
     background-clip: border-box;
-    max-width: 300px;
-    max-height: 350px;
+    max-width: 100%; 
+    max-height: 550px;
     margin: 20px auto 100px -10px;
     }
+    /*
+    max-width: 300px; 
+    max-height: 350px;
+    
+    */
