@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
-import './App.css'
 import Favicon from './componentes/Favicon'
 import ListaDePlantas from './componentes/ListaDePlantas'
 import ListaDeEspacios from './componentes/ListaDeEspacios'
 import DataChart from './componentes/DataChart'
 import HeaderBar from './componentes/HeaderBar'
 import {Container, Row, Col} from 'reactstrap'
-import 'bootstrap/dist/css/bootstrap.css'
+import Footer from './componentes/FooterBar'
 import Grafico from './componentes/Grafico'
+import 'bootstrap/dist/css/bootstrap.css'
 import './css/listaCartas.css'
 import './css/margenChart.css'
-
+import './App.css'
 
 function App() {
   const [espacios, setEspacios] = useState([])
@@ -58,6 +58,7 @@ function App() {
               </Col>
             </Container>
           </div>
+          <Footer/>
       </body>  
     </div>
   )
