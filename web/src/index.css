@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 100%;
 }
 
 code {
@@ -26,7 +27,7 @@ img {
 }
 
 /* Remove extra left and right margins, due to padding */
-.row {margin: 0 -5px;}
+.row {margin: 0 -5px;max-width: 100%;}
 
 /* Clear floats after the columns */
 .row:after {

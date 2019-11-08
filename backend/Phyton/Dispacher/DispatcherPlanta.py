@@ -26,7 +26,7 @@ class DispatcherPlanta(Dispacher):
 
 
     def obtenerPlantaPorId(self, id):
-        return self.dao.obtenerPlantaPorId(id).jsonificar()
+        return self.dao.obtenerPorId(id).jsonificar()
 
 
     def obtenerPlantasPorEspacioId(self, idEspacio):

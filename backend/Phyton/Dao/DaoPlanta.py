@@ -9,15 +9,11 @@ class DaoPlanta(DaoGeneral):
     classe = Planta
 
     @connecion
-    def obtenerPlantaPorId(self, id):
-        return self.currentSession.query(Planta).filter(Planta.id == id).one()
-
-    @connecion
     def obtenerPlantasPorEspacioId(self, espacioId):
-        return self.currentSession.query(Planta).join(Planta.espaciosId).\
+        return self.currentSession.query(self.classe).join(self.classe.espaciosId).\
             filter(Espacio_planta.espacio_id == espacioId).all()
 
 
     @connecion
     def obtenerPlantaSinEspacio(self):
-        return self.currentSession.query(Planta).filter(Planta.espaciosId == None )
+        return self.currentSession.query(self.classe).filter(self.classe.espaciosId == None )
