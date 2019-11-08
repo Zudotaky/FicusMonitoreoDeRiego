@@ -7,8 +7,8 @@ from backend.Phyton.Decoradores import jsonificable
 class Registro(Base, jsonificable):
 
     __tablename__ = 'registro'
-    id = Column(Integer, primary_key=True)
-    plantaId = Column(Integer, ForeignKey('plantas.id'), primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    plantaId = Column(Integer, ForeignKey('plantas.id'))
     fecha = Column(String(30))
     humedad = Column(Integer)
     temperatura = Column(Integer)
