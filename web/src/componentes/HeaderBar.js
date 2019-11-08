@@ -5,9 +5,7 @@ function HeaderBar(){
     return(
     <div className="header">
         <a href="/  ">  </a>
-        <div className="header-right">
-            <b>AppFicus</b> 
-        </div>
+        <h1>AppFicus</h1> 
     </div>
     )
 }
