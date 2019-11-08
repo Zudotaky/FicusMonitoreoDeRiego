@@ -6,6 +6,7 @@
     background-color: #f1f1f1;
     margin: 20px;
     min-height: 425px;
+    max-width: 300px;
   }
   
   .card-img-top {
