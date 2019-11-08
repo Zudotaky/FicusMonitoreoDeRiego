@@ -31,12 +31,17 @@ function calcularEstado(humedad){
 // }
 
 function Plant(props){
-    //const {plantaSeleccionada, setPlantaSeleccionada, setDataPlanta} = props
+    const {selected} = props
     //        <div className="card" onClick={this.props.handleClick}>
    //Otra forma de hacer el click 
+
+   let className = 'card'
+   if (selected) {
+     className += ' tarjetaSeleccionada'
+   }
     
     return(
-        <div className="card" onClick={props.handleClick}>
+        <div className={ className } onClick={props.handleClick}>
             <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
             <div className="textInCards">
                 <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>

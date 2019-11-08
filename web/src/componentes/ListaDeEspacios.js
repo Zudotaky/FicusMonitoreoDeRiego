@@ -8,7 +8,7 @@ function ListaDeEspacios(props) {
   useEffect(() => {
     new Servicios().obtenerEspacios().then(setEspacios)
   }, [])
-  
+
   return espacios.map(espacio => (
       <Espacio key={espacio.id}
         {...espacio} 
