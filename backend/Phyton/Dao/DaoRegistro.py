@@ -15,3 +15,7 @@ class DaoRegistro(DaoGeneral):
     def obtenerRegistrosPorIdYFechas(self, plantaId, fechaInicio, fechaFin):
             return self.currentSession.query(self.classe).filter(self.classe.plantaId == plantaId, self.classe.fecha > fechaInicio,
                                                           self.classe.fecha < fechaFin).all()
+
+    @connecion
+    def obtenerUltimoRegistro(self,plantaId):
+        return self.currentSession.query(self.classe).filter(self.classe.plantaId == plantaId).order_by(self.classe.id.desc()).first()

@@ -63,3 +63,15 @@ class obtenerReportePorFecha(Resource):
         listaDeRegistros = dispacherRegistro.obtenerRegistroPorIdPlantaYFecha(id, fechaInicio, fechaFin)
         return {'Registros': list(listaDeRegistros)}
 
+obtenerUltimo = reqparse.RequestParser()
+obtenerUltimo.add_argument('id', type=int, required=True)
+
+@registroRequest.route('/obtenerUltimo',methods=['POST'])
+@registroRequest.expect(obtenerUltimo)
+class obtenerReportePorFecha(Resource):
+    def post(self):
+        jsonRequest = obtenerUltimo.parse_args()
+        id = jsonRequest['id']
+        registros = dispacherRegistro.obtenerUltimoRegistro(id)
+        return registros
+

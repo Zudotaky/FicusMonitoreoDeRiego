@@ -29,3 +29,7 @@ class DispatcherRegistro(Dispacher):
     def obtenerRegistroPorIdPlantaYFecha(self, id, fechaInicio, fechaFin):
         listaDeRegistros = self.dao.obtenerRegistrosPorIdYFechas(id, fechaInicio, fechaFin)
         return self.jsonificarLista(listaDeRegistros)
+
+    def obtenerUltimoRegistro(self, plantaId):
+        registro = self.dao.obtenerUltimoRegistro(plantaId)
+        return registro.jsonificar()
