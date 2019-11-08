@@ -19,7 +19,8 @@ function ListaDePlantas(props){
             <Planta
                 {...planta} 
                handleClick={() => setPlantaSeleccionada(planta.id)}
-               selected={planta.id === plantaSeleccionada}  />
+               selected={planta.id === plantaSeleccionada}
+               idPlanta={planta.id} />
         </tr>
     )
 }

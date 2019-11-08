@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, {useEffect} from 'react'
 import Servicios from './Servicios'
 import DataChart from './DataChart'
 import '../css/card.css'
@@ -31,9 +31,15 @@ function calcularEstado(humedad){
 // }
 
 function Plant(props){
-    const {selected} = props
-    //        <div className="card" onClick={this.props.handleClick}>
-   //Otra forma de hacer el click 
+    const {selected, idPlanta} = props
+    let ultimoSenso = {}
+
+   useEffect(() => {
+        new Servicios().obtenerUltimoSenso(idPlanta).then((senso)=>{ultimoSenso = senso})
+        console.log('ultimoSenso', ultimoSenso)
+    }, [selected])
+
+
 
    let className = 'card'
    if (selected) {
