@@ -22,7 +22,7 @@ class DispatcherRegistro(Dispacher):
 
     # funciones para recuperar datos persistidos
     def obtenerRegistroPorIdPlanta(self, plantaId):
-        listaDeRegistros = self.dao.obtenerRegistroPorId(plantaId)
+        listaDeRegistros = self.dao.obtenerRegistroPorPlantaId(plantaId)
         return self.jsonificarLista(listaDeRegistros)
 
 
