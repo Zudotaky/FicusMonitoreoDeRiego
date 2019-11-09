@@ -51,6 +51,7 @@ function App() {
                   <h1>{dataPlanta.data}</h1>
                   <Grafico 
                     plantaSeleccionada={plantaSeleccionada}
+                    espacioSeleccionado={espacioSeleccionado}
                     setDataPlanta={setDataPlanta}
                     dataPlanta={dataPlanta} />
                 </Row>

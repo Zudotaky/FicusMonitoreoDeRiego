@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react'
 import Planta from './Plant'
 import Servicios from '../servicios/plantasServ'
+import '../css/card.css'
+import '../css/textInCards.css'
 
 
 function ListaDePlantas(props){
@@ -11,7 +13,13 @@ function ListaDePlantas(props){
     }, [espacioSeleccionado])
 
     if (!espacioSeleccionado){
-        return <span>Seleccione un espacio</span>
+        return <div className= 'card'>
+                    <div className="textInCards">
+                        <h4 className="lineaDebajo"></h4>
+                        <h4 className="lineaDebajo"><b>Seleccione un espacio</b></h4>
+                        <p>Una vez seleccionado un espacio podrá ver las plantas que contiene.</p>
+                    </div>
+                </div>
     }               
 
     return plantas.map(planta => 
