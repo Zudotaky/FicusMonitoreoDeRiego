@@ -1,12 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, {useEffect, useState} from 'react'
-import Servicios from './Servicios'
-import DataChart from './DataChart'
+import Servicios from '../servicios/registrosServ'
 import '../css/card.css'
 import '../css/textInCards.css'
-// const imageStyle = {
-//     width: '100%',
-// }
 
 function calcularEstado(humedad){
     // Exceso de riego, Riego estable, Falta riego
@@ -19,17 +14,6 @@ function calcularEstado(humedad){
     return <font size="2" color="Blue">Exceso de riego.</font>
 }
 
-// const obtenerDataPlanta = (plantaId, props) => {
-//     let dataPlanta= null
-//     new Servicios().obtenerDataChart(plantaId).then((registros) => {
-//         dataPlanta = registros
-//         props.plantaSeleccionada = plantaId
-//     })
-//     console.log('planta seleccionada')
-//     console.log(props.plantaSeleccionada)
-//     return dataPlanta
-// }
-
 function Plant(props){
     const {selected, idPlanta} = props
     const [ultimoSenso, setUltimoSenso] = useState({})
@@ -39,8 +23,6 @@ function Plant(props){
         new Servicios().obtenerUltimoSenso(idPlanta).then(setUltimoSenso)
         console.log('ultimoSenso', ultimoSenso)
     }, [selected])
-
-
 
    let className = 'card'
    if (selected) {

@@ -1,5 +1,5 @@
-import React from "react";
-import {Container, Row, Col} from 'reactstrap'
+import React from 'react'
+import {Row, Col} from 'reactstrap'
 import '../css/bar.css'
 
 function Footer() {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Espacio from './Espacio'
-import Servicios from './Servicios'
+import Servicios from '../servicios/espaciosServ'
 
 function ListaDeEspacios(props) {
   const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props

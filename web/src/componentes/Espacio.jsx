@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import Planta from './Plant'
-import Servicios from './Servicios'
+import Servicios from '../servicios/espaciosServ'
 import '../css/card.css'
 import '../css/textInCards.css'
 import '../css/tarjetaSeleccionada.css'
@@ -28,5 +27,4 @@ function Espacio(props){
         )
     }
 
-
-export default Espacio;
+export default Espacio

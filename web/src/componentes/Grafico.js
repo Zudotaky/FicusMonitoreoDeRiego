@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import Servicios from './Servicios'
+import React, { useEffect } from 'react'
+import Servicios from '../servicios/registrosServ'
 import DataChart from './DataChart'
 
 function Grafico(props) {
@@ -13,7 +13,6 @@ function Grafico(props) {
     return <span>El gráfico se ve al seleccionar una planta</span>
   }
 
-  
   return (
     <DataChart dataPlanta={dataPlanta} />
   )

@@ -8,4 +8,4 @@ function Favicon() {
     )
 }
 
-export default Favicon;
+export default Favicon

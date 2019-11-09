@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import Planta from './Plant'
-import Servicios from './Servicios'
+import Servicios from '../servicios/plantasServ'
 
 
 function ListaDePlantas(props){
