@@ -53,10 +53,9 @@ class Servicios {
                 'Content-Type': 'application/json'
             }
         })
-        const registros = await response.json()
-        console.log(registros)
-        console.log("mira un console log")
-        return registros
+        const ultimoSenso = await response.json()
+        console.log('log de sensos:', ultimoSenso)
+        return ultimoSenso
     }
 }
 

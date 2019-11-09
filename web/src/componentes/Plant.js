@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Servicios from './Servicios'
 import DataChart from './DataChart'
 import '../css/card.css'
@@ -32,10 +32,11 @@ function calcularEstado(humedad){
 
 function Plant(props){
     const {selected, idPlanta} = props
-    let ultimoSenso = {}
+    const [ultimoSenso, setUltimoSenso] = useState({})
 
    useEffect(() => {
-        new Servicios().obtenerUltimoSenso(idPlanta).then((senso)=>{ultimoSenso = senso})
+        //new Servicios().obtenerUltimoSenso(idPlanta).then((senso)=>{ultimoSenso = senso})
+        new Servicios().obtenerUltimoSenso(idPlanta).then(setUltimoSenso)
         console.log('ultimoSenso', ultimoSenso)
     }, [selected])
 
@@ -51,7 +52,7 @@ function Plant(props){
             <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
             <div className="textInCards">
                 <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
-                <p>Estado de la planta: {calcularEstado(900)}</p>
+                <p>Estado de la planta: {calcularEstado(ultimoSenso.humedad)}</p>
                 <h4 className="lineaDebajo"></h4>
                 <p>{props.descripcion}</p>
             </div>
