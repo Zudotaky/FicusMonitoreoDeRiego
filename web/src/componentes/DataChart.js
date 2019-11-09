@@ -39,8 +39,8 @@ export default function DataChart(props) {
           }}
           >
           <CartesianGrid strokeDasharray="4 4" />
-          <XAxis dataKey="name" />
-          <YAxis type="category" />
+          <XAxis tick={{ fill: 'yellow', fontWeight: 'bold'}} dataKey="name" />
+          <YAxis tick={{ fill: 'yellow', fontWeight: 'bold'}} type="category" />
           <Tooltip />
           <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
