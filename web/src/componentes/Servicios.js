@@ -36,16 +36,28 @@ class Servicios {
         return registros
     }
 
-    obtenerUltimoSenso(idPlanta){
+    async obtenerUltimoSenso(idPlanta){
         const url = new URL('/Registro/obtenerUltimo', urlBase).toString()
 
-        return fetch(url, {
+        // return fetch(url, {
+        //     method: 'POST',
+        //     body: JSON.stringify({id: idPlanta}),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // }).then(res => res.json()).then(({ Senso }) => Senso)
+
+        const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify({id: idPlanta}),
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => res.json()).then(({ Senso }) => Senso)
+        })
+        const registros = await response.json()
+        console.log(registros)
+        console.log("mira un console log")
+        return registros
     }
 }
 
