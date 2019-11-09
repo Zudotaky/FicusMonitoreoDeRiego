@@ -24,6 +24,11 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 export default function DataChart(props) {
     const {dataPlanta} = props
     let dataProcesada = []
+
+    if (dataPlanta.Registros === undefined) {
+      dataPlanta.Registros = []
+    }
+
     dataPlanta.Registros.map(senso => dataProcesada.push(generarDataHumedad(senso)))
     return (
       <ResponsiveContainer width="99%" height={500}>
