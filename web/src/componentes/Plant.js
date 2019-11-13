@@ -19,7 +19,6 @@ function Plant(props){
     const [ultimoSenso, setUltimoSenso] = useState({})
 
    useEffect(() => {
-        //new Servicios().obtenerUltimoSenso(idPlanta).then((senso)=>{ultimoSenso = senso})
         new Servicios().obtenerUltimoSenso(idPlanta).then(setUltimoSenso)
         console.log('ultimoSenso', ultimoSenso)
     }, [selected])
