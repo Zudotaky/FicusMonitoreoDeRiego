@@ -1,12 +1,12 @@
 import React, { useEffect, Fragment} from 'react'
-import Servicios from '../servicios/registrosServ'
+import RegistrosServ from '../servicios/registrosServ'
 import DataChart from './DataChart'
 
 function Grafico(props) {
   const {plantaSeleccionada, espacioSeleccionado, setDataPlanta, dataPlanta} = props
 
   useEffect(() => {
-    new Servicios().obtenerDataChart(plantaSeleccionada).then(setDataPlanta)
+    new RegistrosServ().obtenerDataChart(plantaSeleccionada).then(setDataPlanta)
   }, [plantaSeleccionada])
 
   if(!espacioSeleccionado){

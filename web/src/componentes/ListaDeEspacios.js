@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import Espacio from './Espacio'
-import Servicios from '../servicios/espaciosServ'
+import espaciosServ from '../servicios/espaciosServ'
 
 function ListaDeEspacios(props) {
   const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
 
   useEffect(() => {
-    new Servicios().obtenerEspacios().then(setEspacios)
+    new espaciosServ().obtenerEspacios().then(setEspacios)
   }, [])
 
   return espacios.map(espacio => (
