@@ -10,27 +10,26 @@ function ListaDePlantas(props){
    
     useEffect(() => {
         new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
-    }, [espacioSeleccionado])
+    },[ espacioSeleccionado ])           
 
-    if (!espacioSeleccionado){
-        return <div className= 'card'>
-                    <div className="textInCards">
-                        <h4 className="lineaDebajo"></h4>
-                        <h4 className="lineaDebajo"><b>Seleccione un espacio</b></h4>
-                        <p>Una vez seleccionado un espacio podrá ver las plantas que contiene.</p>
-                    </div>
-                </div>
-    }               
-
-    return plantas.map(planta => 
+    return <div>
+     { espacioSeleccionado ?
+        plantas.map(planta => 
         <tr key={planta.id} >
             <Planta
                 {...planta} 
-               handleClick={() => setPlantaSeleccionada(planta.id)}
-               selected={planta.id === plantaSeleccionada}
-               idPlanta={planta.id} />
-        </tr>
-    )
+            handleClick={() => setPlantaSeleccionada(planta.id)}
+            selected={planta.id === plantaSeleccionada}
+            idPlanta={planta.id} />
+        </tr>) :
+        <div className= 'card'>
+            <div className="textInCards">
+                <h4 className="lineaDebajo"></h4>
+                <h4 className="lineaDebajo"><b>Seleccione un espacio</b></h4>
+                <p>Una vez seleccionado un espacio podrá ver las plantas que contiene.</p>
+            </div>
+        </div> 
+    }</div>
 }
 
 export default ListaDePlantas
