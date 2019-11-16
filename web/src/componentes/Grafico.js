@@ -21,7 +21,6 @@ function Grafico(props) {
     </div>
 </div>
   }
-
   return (
     <DataChart dataPlanta={dataPlanta} />
   )

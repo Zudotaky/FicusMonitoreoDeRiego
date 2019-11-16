@@ -20,7 +20,6 @@ function Plant(props){
 
    useEffect(() => {
         new Servicios().obtenerUltimoSenso(idPlanta).then(setUltimoSenso)
-        console.log('ultimoSenso', ultimoSenso)
     }, [selected])
 
    let className = 'card'

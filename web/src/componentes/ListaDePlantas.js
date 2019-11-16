@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, Fragment} from 'react'
 import Planta from './Plant'
 import Servicios from '../servicios/plantasServ'
 import '../css/card.css'
@@ -10,9 +10,9 @@ function ListaDePlantas(props){
    
     useEffect(() => {
         new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
-    },[ espacioSeleccionado ])           
+    },[ espacioSeleccionado])           
 
-    return <div>
+    return <Fragment>
      { espacioSeleccionado ?
         plantas.map(planta => 
         <tr key={planta.id} >
@@ -29,7 +29,7 @@ function ListaDePlantas(props){
                 <p>Una vez seleccionado un espacio podrá ver las plantas que contiene.</p>
             </div>
         </div> 
-    }</div>
+    } </Fragment>
 }
 
 export default ListaDePlantas
