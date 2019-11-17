@@ -1,30 +1,26 @@
-import React, { useState, useCallback, Children } from "react";
-import ListaDePlantas from "./componentes/ListaDePlantas";
-import ListaDeEspacios from "./componentes/ListaDeEspacios";
+import React, { useState } from 'react'
+import ListaDePlantas from './componentes/ListaDePlantas'
+import ListaDeEspacios from './componentes/ListaDeEspacios'
+import ColapsableSection from './componentes/ColapsableSection'
 import {
   Container,
   Row,
-  Col,
-  Collapse,
-  CardBody,
-  Card,
-  CardText,
-  CardTitle
-} from "reactstrap";
-import Grafico from "./componentes/Grafico";
+  Col
+} from 'reactstrap'
+import Grafico from './componentes/Grafico'
 
 function Dashboard() {
-  const [espacios, setEspacios] = useState([]);
-  const [plantas, setPlantas] = useState([]);
-  const [espacioSeleccionado, setEspacioSeleccionado] = useState(null);
-  const [plantaSeleccionada, setPlantaSeleccionada] = useState(null);
-  const [dataPlanta, setDataPlanta] = useState({});
+  const [espacios, setEspacios] = useState([])
+  const [plantas, setPlantas] = useState([])
+  const [espacioSeleccionado, setEspacioSeleccionado] = useState(null)
+  const [plantaSeleccionada, setPlantaSeleccionada] = useState(null)
+  const [dataPlanta, setDataPlanta] = useState({})
 
   return (
       <Container fluid>
         <Col>
           <Row className="listaCartas">
-            <CollapsableSection title="Espacios">
+            <ColapsableSection title="Espacios">
               <ListaDeEspacios
                 handleClick
                 espacios={espacios}
@@ -32,10 +28,10 @@ function Dashboard() {
                 espacioSeleccionado={espacioSeleccionado}
                 setEspacioSeleccionado={setEspacioSeleccionado}
               />
-            </CollapsableSection>
+            </ColapsableSection>
           </Row>
           <Row className="listaCartas">
-            <CollapsableSection title="Plantas">
+            <ColapsableSection title="Plantas">
               <ListaDePlantas
                 plantas={plantas}
                 setPlantas={setPlantas}
@@ -45,41 +41,21 @@ function Dashboard() {
                 setDataPlanta={setDataPlanta}
                 dataPlanta={dataPlanta}
               />
-            </CollapsableSection>
+            </ColapsableSection>
           </Row>
-          <Row className="margenChart" style={{ display: "block"}}>
-            <CollapsableSection title="Gráfico">
+          <Row className="margenChart" style={{ display: 'block'}}>
+            <ColapsableSection title="Gráfico">
               <Grafico
                 plantaSeleccionada={plantaSeleccionada}
                 espacioSeleccionado={espacioSeleccionado}
                 setDataPlanta={setDataPlanta}
                 dataPlanta={dataPlanta}
               />
-            </CollapsableSection>
+            </ColapsableSection>
           </Row>
         </Col>
       </Container>
-  );
+  )
 }
 
-export default Dashboard;
-
-function CollapsableSection({ title, children }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleIsOpen = useCallback(() => {
-    setIsOpen(o => !o);
-  }, []);
-
-  return (
-    <Card style={{ backgroundColor: "lightgreen" }}>
-      <CardBody>
-        <CardTitle style={{ backgroundColor: "lightgray" }}>
-          <div onClick={toggleIsOpen} style={{ backgroundColor: "blue" }}>
-            {title}
-          </div>
-        </CardTitle>
-        <Collapse isOpen={isOpen}>{children}</Collapse>
-      </CardBody>
-    </Card>
-  );
-}
+export default Dashboard
