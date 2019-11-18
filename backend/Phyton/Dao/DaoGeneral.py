@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from backend.Phyton.Decoradores import session, connecion
 from backend.Phyton.base import Base
 from backend.Phyton.Planta import Planta
@@ -8,9 +8,9 @@ from backend.Phyton.Registro import Registro
 
 
 class DaoGeneral:
-    engine = create_engine('sqlite:///ficus.db', echo=True)
+    engine = create_engine('sqlite:///ficus.db', connect_args={'check_same_thread': False}, echo=True)
     sessionConfig = sessionmaker(bind=engine)
-    currentSession = None
+    currentSession = sessionConfig()
     connector = None
     classe = None
 

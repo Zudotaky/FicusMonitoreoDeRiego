@@ -1,16 +1,20 @@
-import React, { useState, Children } from 'react'
+import React, { useState, Children, useEffect } from 'react'
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
   CarouselCaption
-} from 'reactstrap';
+} from 'reactstrap'
+
+import espaciosServ from '../servicios/espaciosServ'
+
+import '../css/listaCartas.css'
 
 const items = [
   {
     id: 1,
-    altText: 'Slide 1',
+    altText: '',
     caption: 'Slide 1'
   },
   {
@@ -23,35 +27,41 @@ const items = [
     altText: 'Slide 3',
     caption: 'Slide 3'
   }
-];
+]
 
-const Carrusel = (props) => {
+function Carrusel(props) {
   //console.log(props.children.props)
   
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [animating, setAnimating] = useState(false)
+  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
+
 
   const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
+    if (animating) return
+    const nextIndex = activeIndex === espacios.length - 1 ? 0 : activeIndex + 1
+    setActiveIndex(nextIndex)
   }
 
   const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
+    if (animating) return
+    const nextIndex = activeIndex === 0 ? espacios.length - 1 : activeIndex - 1
+    setActiveIndex(nextIndex)
   }
 
   const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
+    if (animating) return
+    setActiveIndex(newIndex)
   }
+
+  useEffect(() => {
+    new espaciosServ().obtenerEspacios().then(setEspacios)
+  }, [])
 
 //Children.map(children, (child)=> <CarouselItem>{child}</CarouselItem>)
 
-  const slides = items.map((item) => {
+  const slides = espacios.map((item) => {
     return (
       <CarouselItem
         className="custom-tag"
@@ -60,34 +70,26 @@ const Carrusel = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
+        <img src={item.imagen} alt={item.altText} />
+        <CarouselCaption className="letrasCarrito" captionText={ item.nombre } captionHeader={item.nombre} />
       </CarouselItem>
-    );
-  });
+    )
+  })
 
   return (
     <div>
-      <style>
-        {
-          `.custom-tag {
-              max-width: 100%;
-              height: 500px;
-              background: black;
-            }`
-        }
-      </style>
-      <Carousel
+      <Carousel className='carrito'
         activeIndex={activeIndex}
         next={next}
         previous={previous}
       >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+        <CarouselIndicators items={espacios} activeIndex={activeIndex} onClickHandler={goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
       </Carousel>
     </div>
-  );
+  )
 }
 
 export default Carrusel

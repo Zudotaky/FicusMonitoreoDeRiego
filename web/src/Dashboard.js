@@ -19,6 +19,11 @@ function Dashboard() {
 
   return (
       <Container fluid>
+        <Carrusel
+          espacios={espacios}
+          setEspacios={setEspacios}
+          espacioSeleccionado={espacioSeleccionado}
+          setEspacioSeleccionado={setEspacioSeleccionado}/>
         <Col>
           <Row className="listaCartas">
             <ColapsableSection title="Espacios">
