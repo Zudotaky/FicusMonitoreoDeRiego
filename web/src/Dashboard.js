@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ListaDePlantas from './componentes/ListaDePlantas'
 import ListaDeEspacios from './componentes/ListaDeEspacios'
 import ColapsableSection from './componentes/ColapsableSection'
+import Carrusel from './componentes/Carrusel'
 import {
   Container,
   Row,
@@ -21,13 +22,13 @@ function Dashboard() {
         <Col>
           <Row className="listaCartas">
             <ColapsableSection title="Espacios">
-              <ListaDeEspacios
-                handleClick
-                espacios={espacios}
-                setEspacios={setEspacios}
-                espacioSeleccionado={espacioSeleccionado}
-                setEspacioSeleccionado={setEspacioSeleccionado}
-              />
+                <ListaDeEspacios
+                    handleClick
+                    espacios={espacios}
+                    setEspacios={setEspacios}
+                    espacioSeleccionado={espacioSeleccionado}
+                    setEspacioSeleccionado={setEspacioSeleccionado}
+                  />
             </ColapsableSection>
           </Row>
           <Row className="listaCartas">

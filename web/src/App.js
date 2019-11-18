@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderBar from './componentes/HeaderBar';
+import HeaderBar from './componentes/HeaderBar'
 import Footer from './componentes/FooterBar';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/listaCartas.css';
