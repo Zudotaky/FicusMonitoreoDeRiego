@@ -26,10 +26,15 @@ function Plant(props){
    if (selected) {
      className += ' tarjetaSeleccionada'
    }
-    
+    const imageBackground = {
+        backgroundImage: 'url(' + props.imagen + ')'
+    }
+
     return(
         <div className={ className } onClick={props.handleClick}>
-            <img className="card-img-top" src={props.imagen} alt="Imagen de Planta no disponible."/>
+            <div className='loadingCard'>
+                <div className="card-img-top" src={props.imagen} style={imageBackground} alt="Imagen de Planta no disponible."/>
+            </div>
             <div className="textInCards">
                 <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
                 <p>Estado de la planta: {calcularEstado(ultimoSenso.humedad)}</p>

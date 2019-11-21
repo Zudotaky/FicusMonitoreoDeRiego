@@ -15,13 +15,13 @@ function ListaDePlantas(props){
     return <Fragment>
      { espacioSeleccionado ?
         plantas.map(planta => 
-        <tr key={planta.id} >
+        <div key={planta.id} >
             <Planta
                 {...planta} 
             handleClick={() => setPlantaSeleccionada(planta.id)}
             selected={planta.id === plantaSeleccionada}
             idPlanta={planta.id} />
-        </tr>) :
+        </div>) :
         <div className= 'card'>
             <div className="textInCards">
                 <h4 className="lineaDebajo"></h4>

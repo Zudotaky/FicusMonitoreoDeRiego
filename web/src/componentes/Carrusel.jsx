@@ -10,6 +10,7 @@ import {
 import espaciosServ from '../servicios/espaciosServ'
 
 import '../css/listaCartas.css'
+import '../css/carruselImagen.css'
 
 const items = [
   {
@@ -61,7 +62,12 @@ function Carrusel(props) {
 
 //Children.map(children, (child)=> <CarouselItem>{child}</CarouselItem>)
 
+
   const slides = espacios.map((item) => {
+    let carruselImagenClass = 'carruselImagen' 
+    if (espacioSeleccionado === item.id) {
+      carruselImagenClass += ' tarjetaSeleccionada'
+    }
     return (
       <CarouselItem
         className="custom-tag"
@@ -70,8 +76,8 @@ function Carrusel(props) {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <img src={item.imagen} alt={item.altText} />
-        <CarouselCaption className="letrasCarrito" captionText={ item.nombre } captionHeader={item.nombre} />
+        <img className={carruselImagenClass} src={item.imagen} alt={item.altText} onClick= {()=>setEspacioSeleccionado(item.id)}/>
+        <CarouselCaption className="letrasCarrito" captionText={ item.nombre } captionHeader={item.descripcion} />
       </CarouselItem>
     )
   })
@@ -82,6 +88,7 @@ function Carrusel(props) {
         activeIndex={activeIndex}
         next={next}
         previous={previous}
+        interval={false}
       >
         <CarouselIndicators items={espacios} activeIndex={activeIndex} onClickHandler={goToIndex} />
         {slides}

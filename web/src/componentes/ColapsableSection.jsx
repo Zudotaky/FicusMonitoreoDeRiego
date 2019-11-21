@@ -6,6 +6,8 @@ import {
     CardTitle
   } from 'reactstrap'
 
+import '../css/card.css'
+
 function ColapsableSection({ title, children }) {
     const [isOpen, setIsOpen] = useState(false)
     const toggleIsOpen = useCallback(() => {
@@ -13,10 +15,10 @@ function ColapsableSection({ title, children }) {
     }, [])
   
     return (
-      <Card style={{ backgroundColor: 'lightgreen' }}>
+      <Card className='colapsableBackground'>
         <CardBody>
-          <CardTitle style={{ backgroundColor: 'lightgray' }}>
-            <div onClick={toggleIsOpen} style={{ backgroundColor: 'blue' }}>
+          <CardTitle>
+            <div onClick={toggleIsOpen} className='colapsableText'>
               {title}
             </div>
           </CardTitle>

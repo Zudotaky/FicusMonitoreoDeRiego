@@ -19,21 +19,14 @@ function Dashboard() {
 
   return (
       <Container fluid>
-        <Carrusel
-          espacios={espacios}
-          setEspacios={setEspacios}
-          espacioSeleccionado={espacioSeleccionado}
-          setEspacioSeleccionado={setEspacioSeleccionado}/>
         <Col>
-          <Row className="listaCartas">
+          <Row className="listaCartas noScrollY">
             <ColapsableSection title="Espacios">
-                <ListaDeEspacios
-                    handleClick
-                    espacios={espacios}
-                    setEspacios={setEspacios}
-                    espacioSeleccionado={espacioSeleccionado}
-                    setEspacioSeleccionado={setEspacioSeleccionado}
-                  />
+              <Carrusel
+                espacios={espacios}
+                setEspacios={setEspacios}
+                espacioSeleccionado={espacioSeleccionado}
+                setEspacioSeleccionado={setEspacioSeleccionado}/>
             </ColapsableSection>
           </Row>
           <Row className="listaCartas">
@@ -65,3 +58,12 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+
+{/* <ListaDeEspacios
+                    handleClick
+                    espacios={espacios}
+                    setEspacios={setEspacios}
+                    espacioSeleccionado={espacioSeleccionado}
+                    setEspacioSeleccionado={setEspacioSeleccionado}
+                  /> */}
