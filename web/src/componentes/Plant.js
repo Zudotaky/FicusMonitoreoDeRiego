@@ -14,7 +14,16 @@ function calcularEstado(humedad){
     return <font size="2" color="Blue">Exceso de riego.</font>
 }
 
-function Plant(props){
+type Props = {
+    selected: string,
+    idPlanta: string,
+    imagen: string,
+    handleClick: string,
+    descripcion: string,
+    nombre: string
+    }
+
+function Plant(props: Props){
     const {selected, idPlanta} = props
     const [ultimoSenso, setUltimoSenso] = useState({})
 

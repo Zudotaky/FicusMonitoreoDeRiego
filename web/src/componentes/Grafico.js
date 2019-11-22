@@ -2,7 +2,14 @@ import React, { useEffect, Fragment} from 'react'
 import RegistrosServ from '../servicios/registrosServ'
 import DataChart from './DataChart'
 
-function Grafico(props) {
+type Props = {
+  setDataPlanta: string,
+  dataPlanta: string,
+  espacioSeleccionado: string,
+  plantaSeleccionada: string
+}
+
+function Grafico(props: Props) {
   const {plantaSeleccionada, espacioSeleccionado, setDataPlanta, dataPlanta} = props
 
   useEffect(() => {

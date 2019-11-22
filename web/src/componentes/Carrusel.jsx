@@ -1,42 +1,24 @@
-import React, { useState, Children, useEffect } from 'react'
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
+import React, { useState, useEffect } from 'react'
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption
 } from 'reactstrap'
-
 import espaciosServ from '../servicios/espaciosServ'
 
 import '../css/listaCartas.css'
 import '../css/carruselImagen.css'
 
-const items = [
-  {
-    id: 1,
-    altText: '',
-    caption: 'Slide 1'
-  },
-  {
-    id: 2,
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    id: 3,
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-]
+type Props = {
+  espacios: string,
+  setEspacios: string,
+  espacioSeleccionado: string,
+  setEspacioSeleccionado: string
+}
 
-function Carrusel(props) {
+function Carrusel(props: Props) {
   //console.log(props.children.props)
   
-
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
-  const {espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
+  const { espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
 
 
   const next = () => {

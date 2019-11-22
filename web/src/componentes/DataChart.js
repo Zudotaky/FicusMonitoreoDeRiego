@@ -29,7 +29,11 @@ function calcularNivelDeHumedad(humedad) {
   return 'Muy mojado'
 }
 
-export default function DataChart(props) {
+type Props = {
+  dataPlanta: string
+}
+
+export default function DataChart(props: Props) {
   const { dataPlanta } = props
   const dataProcesada = (dataPlanta.Registros || []).map(senso =>
     generarDataHumedad(senso)

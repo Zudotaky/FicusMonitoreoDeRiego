@@ -1,4 +1,4 @@
-//import { URL } from 'url'
+
 import fetch from 'node-fetch'
 
 let urlBase = 'http://localhost:5000'

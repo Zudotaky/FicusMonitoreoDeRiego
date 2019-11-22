@@ -4,8 +4,15 @@ import Servicios from '../servicios/plantasServ'
 import '../css/card.css'
 import '../css/textInCards.css'
 
+type Props = {
+    plantas: string,
+    setPlantas: string,
+    plantaSeleccionada: string,
+    setPlantaSeleccionada: string,
+    espacioSeleccionado: string
+  }
 
-function ListaDePlantas(props){
+function ListaDePlantas(props: Props){
     const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado} = props
    
     useEffect(() => {

@@ -1,20 +1,18 @@
-import React, {Component} from 'react'
-import Servicios from '../servicios/espaciosServ'
+import React from 'react'
 import '../css/card.css'
 import '../css/textInCards.css'
 import '../css/tarjetaSeleccionada.css'
-import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselCaption
-  } from 'reactstrap';
+
   
+type Props = {
+  nombre: string,
+  descripcion: string,
+  imagen: string,
+  selected: string,
+  handleClick: string
+}
 
-
-function Espacio(props){
-        const {id} = props
+function Espacio(props: Props){
         const {nombre} = props
         const {descripcion} = props
         const {imagen} = props
@@ -26,7 +24,7 @@ function Espacio(props){
         }
 
         return(
-                <div className={className} onClick={props.handleClick} /*style={props.selected ? "backgroundColor: red": ""}*/>
+                <div className={className} onClick={props.handleClick}>
                     <img className="card-img-top" src={imagen} alt="Imagen de espacio no disponible."/>
                         <div className="textInCards">
                             <h4 className="lineaDebajo"><b>{nombre}</b></h4>
@@ -37,3 +35,5 @@ function Espacio(props){
     }
 
 export default Espacio
+
+/*style={props.selected ? "backgroundColor: red": ""}*/

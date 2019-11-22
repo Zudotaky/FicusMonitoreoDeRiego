@@ -6,7 +6,6 @@ import { callToServer } from './callToServer'
 class plantasServ {
 
     async obtenerPlantas(idEspacio) {
-        console.log(idEspacio)
         return await callToServer('POST', '/Plantas/ObtenerPorEspaioId', {idEspacio: idEspacio}).then(({ Plantas }) => Plantas)
     }
 }

@@ -1,7 +1,11 @@
 import React from 'react'
 import { Button } from 'reactstrap'
 
-function ColapseBar(props) {
+type Props = {
+  handleClick: string
+}
+
+function ColapseBar(props: Props) {
 const { handleClick } = props
 
 return (

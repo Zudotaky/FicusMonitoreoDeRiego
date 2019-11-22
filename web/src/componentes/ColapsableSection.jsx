@@ -5,8 +5,15 @@ import {
     Card,
     CardTitle
   } from 'reactstrap'
-
+  import PropTypes from 'prop-types'
+  
 import '../css/card.css'
+
+ColapsableSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.string
+}
+
 
 function ColapsableSection({ title, children }) {
     const [isOpen, setIsOpen] = useState(false)
