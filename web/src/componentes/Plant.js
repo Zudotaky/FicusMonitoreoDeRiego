@@ -4,17 +4,6 @@ import Servicios from '../servicios/registrosServ'
 import '../css/card.css'
 import '../css/textInCards.css'
 
-function calcularEstado(humedad){
-    // Exceso de riego, Riego estable, Falta riego
-    if(humedad<300){
-        return <font size="2" color="red">Falta riego.</font>
-    }
-    if(humedad<600){
-        return <font size="2" color="Green">Riego estable.</font>
-    }
-    return <font size="2" color="Blue">Exceso de riego.</font>
-}
-
 type Props = {
     selected: string,
     idPlanta: string,
