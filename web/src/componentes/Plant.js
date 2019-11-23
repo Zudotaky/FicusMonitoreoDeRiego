@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import EstadoHumedad from './EstadoHumedad'
 import Servicios from '../servicios/registrosServ'
 import '../css/card.css'
 import '../css/textInCards.css'
@@ -46,7 +47,7 @@ function Plant(props: Props){
             </div>
             <div className="textInCards">
                 <h4 className="lineaDebajo"><b>{props.nombre}</b></h4>
-                <p>Estado de la planta: {calcularEstado(ultimoSenso.humedad)}</p>
+                <p>Estado de la planta: <EstadoHumedad humedad={ultimoSenso.humedad}/></p>
                 <h4 className="lineaDebajo"></h4>
                 <p>{props.descripcion}</p>
             </div>
