@@ -14,7 +14,6 @@ type Props = {
 }
 
 function Carrusel(props: Props) {
-  //console.log(props.children.props)
   
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
@@ -41,9 +40,6 @@ function Carrusel(props: Props) {
   useEffect(() => {
     new espaciosServ().obtenerEspacios().then(setEspacios)
   }, [])
-
-//Children.map(children, (child)=> <CarouselItem>{child}</CarouselItem>)
-
 
   const slides = espacios.map((item) => {
     let carruselImagenClass = 'carruselImagen' 

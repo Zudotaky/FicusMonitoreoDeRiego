@@ -35,5 +35,3 @@ function Espacio(props: Props){
     }
 
 export default Espacio
-
-/*style={props.selected ? "backgroundColor: red": ""}*/
