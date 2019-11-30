@@ -11,11 +11,12 @@ import '../css/card.css'
 
 ColapsableSection.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.string
+  children: PropTypes.string,
+  nombre: PropTypes.string
 }
 
 
-function ColapsableSection({ title, children }) {
+function ColapsableSection({ title, nombre, children }) {
     const [isOpen, setIsOpen] = useState(false)
     const toggleIsOpen = useCallback(() => {
       setIsOpen(o => !o)
@@ -27,9 +28,12 @@ function ColapsableSection({ title, children }) {
           <CardTitle>
             <div onClick={toggleIsOpen} className='colapsableText'>
               {title}
+              <br/>
+              {nombre}
             </div>
           </CardTitle>
           <Collapse isOpen={isOpen}>{children}</Collapse>
+          
         </CardBody>
       </Card>
     )

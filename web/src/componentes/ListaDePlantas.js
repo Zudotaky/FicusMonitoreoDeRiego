@@ -13,19 +13,23 @@ type Props = {
   }
 
 function ListaDePlantas(props: Props){
-    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado} = props
+    const {plantas, setPlantas, plantaSeleccionada, setPlantaSeleccionada, espacioSeleccionado, setNombrePlanta} = props
    
     useEffect(() => {
         new Servicios().obtenerPlantas(espacioSeleccionado).then(setPlantas)
-    },[ espacioSeleccionado])           
+    },[ espacioSeleccionado])    
 
+    const onSelect = (id, nombre) => {
+        setPlantaSeleccionada(id)
+        setNombrePlanta(nombre)
+    }
     return <Fragment>
      { espacioSeleccionado ?
         plantas.map(planta => 
         <div key={planta.id} >
             <Planta
                 {...planta} 
-            handleClick={() => setPlantaSeleccionada(planta.id)}
+            handleClick={() => onSelect(planta.id,planta.nombre)}
             selected={planta.id === plantaSeleccionada}
             idPlanta={planta.id} />
         </div>) :

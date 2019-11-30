@@ -16,24 +16,28 @@ function Dashboard() {
   const [espacioSeleccionado, setEspacioSeleccionado] = useState(null)
   const [plantaSeleccionada, setPlantaSeleccionada] = useState(null)
   const [dataPlanta, setDataPlanta] = useState({})
+  const [nombreEspacio, setNombreEspacio] = useState('')
+  const [nombrePlanta, setNombrePlanta] = useState('')
 
   return (
       <Container fluid>
         <Col>
           <Row className="listaCartas noScrollY">
-            <ColapsableSection title="Espacios">
+            <ColapsableSection title="Espacios" nombre={nombreEspacio}>
               <Carrusel
                 espacios={espacios}
+                setNombreEspacio={setNombreEspacio}
                 setEspacios={setEspacios}
                 espacioSeleccionado={espacioSeleccionado}
                 setEspacioSeleccionado={setEspacioSeleccionado}/>
             </ColapsableSection>
           </Row>
           <Row className="listaCartas">
-            <ColapsableSection title="Plantas">
+            <ColapsableSection title="Plantas" nombre={nombrePlanta}>
               <ListaDePlantas
                 plantas={plantas}
                 setPlantas={setPlantas}
+                setNombrePlanta={setNombrePlanta}
                 espacioSeleccionado={espacioSeleccionado}
                 plantaSeleccionada={plantaSeleccionada}
                 setPlantaSeleccionada={setPlantaSeleccionada}
@@ -42,7 +46,7 @@ function Dashboard() {
               />
             </ColapsableSection>
           </Row>
-          <Row className="margenChart" style={{ display: 'block'}}>
+          <Row style={{ display: 'block'}}>
             <ColapsableSection title="Gráfico">
               <Grafico
                 plantaSeleccionada={plantaSeleccionada}
@@ -58,12 +62,3 @@ function Dashboard() {
 }
 
 export default Dashboard
-
-
-{/* <ListaDeEspacios
-                    handleClick
-                    espacios={espacios}
-                    setEspacios={setEspacios}
-                    espacioSeleccionado={espacioSeleccionado}
-                    setEspacioSeleccionado={setEspacioSeleccionado}
-                  /> */}

@@ -17,7 +17,7 @@ function Carrusel(props: Props) {
   
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
-  const { espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado} = props
+  const { espacios, setEspacios, espacioSeleccionado, setEspacioSeleccionado, setNombreEspacio} = props
 
 
   const next = () => {
@@ -41,6 +41,11 @@ function Carrusel(props: Props) {
     new espaciosServ().obtenerEspacios().then(setEspacios)
   }, [])
 
+  const onSelect = (id, nombre) => {
+      setEspacioSeleccionado(id)
+      setNombreEspacio(nombre)
+  }
+
   const slides = espacios.map((item) => {
     let carruselImagenClass = 'carruselImagen' 
     if (espacioSeleccionado === item.id) {
@@ -54,7 +59,7 @@ function Carrusel(props: Props) {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <img className={carruselImagenClass} src={item.imagen} alt={item.altText} onClick= {()=>setEspacioSeleccionado(item.id)}/>
+        <img className={carruselImagenClass} src={item.imagen} alt={item.altText} onClick= {()=>onSelect(item.id,item.nombre)}/>
         <CarouselCaption className="letrasCarrito" captionText={ item.nombre } captionHeader={item.descripcion} />
       </CarouselItem>
     )
