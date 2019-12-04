@@ -26,9 +26,15 @@
 .letrasCarrito {
     color: white;
     margin: 20px auto auto 20px;
-    background-color: #0006;
+    background-color: #000b;
     border-radius: 20px;
 }
 
+.carousel-control-prev {
+    background-color: #0005;
+}
 
+.carousel-control-next {
+    background-color: #0005;
+}
 

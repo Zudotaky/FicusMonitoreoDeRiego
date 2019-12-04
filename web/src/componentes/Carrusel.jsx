@@ -60,7 +60,7 @@ function Carrusel(props: Props) {
         onExited={() => setAnimating(false)}
       >
         <img className={carruselImagenClass} src={item.imagen} alt={item.altText} onClick= {()=>onSelect(item.id,item.nombre)}/>
-        <CarouselCaption className="letrasCarrito" captionText={ item.nombre } captionHeader={item.descripcion} />
+        <CarouselCaption className="letrasCarrito" captionText={ item.descripcion } captionHeader={item.nombre} />
       </CarouselItem>
     )
   })
